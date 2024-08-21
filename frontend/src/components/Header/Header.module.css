@@ -1,0 +1,64 @@
+* {
+    margin: 0;
+}
+
+header{
+    display: flex;
+    flex-direction: column;
+    gap: 0; 
+}
+
+.firstLine{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    height: 35px;
+    padding: 0 2.5vw;
+    background-color: #f3f3f5;
+}
+.contact{
+    display: flex;
+    flex-direction: row;
+    padding: 0;
+}
+.contact > p:first-child{
+    padding-right: 1vw;
+    border-right: #CFCFCF .1px solid;
+}
+.contact > :nth-child(2){
+    padding-left: 1vw;
+}
+.firstLine div:nth-child(2){
+    display: flex;
+    flex-direction: row;
+    padding: 0;
+    gap: 1vw;
+    align-items: center;
+}
+.socialIcons{
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+    padding: 0 1vw 0 0;
+    border-right: #CFCFCF .1px solid;
+}
+
+.secondLine{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    height: 50px;
+    padding: 0 2.5vw;
+}
+.secondLine div{
+    display: flex;
+
+}
+nav ul{
+    display: flex;
+    flex-direction: row;
+    list-style: none;
+    gap: 10px;
+}

@@ -1,0 +1,117 @@
+footer{
+    margin-top: 150px;
+    display: flex;
+    flex-direction: row;
+    padding: 80px 10vw;
+    justify-content: space-between;
+    background-color: #111;
+    color: #CFCFCF;
+    font-size: 24px;
+}
+
+.colOne{
+    display: flex;
+    flex-direction: column;
+    width: 20vw;
+    margin-right: 3vw;
+    gap: 15px;
+}
+.colOne div:nth-child(4){
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+.colOne span{
+    color: #FD5056;
+}
+
+
+.colTwo{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 3vw;
+    width: 47vw;
+    max-width: 800px;
+    border-right: #CFCFCF .1px solid;
+    border-left: #CFCFCF .8px solid;
+    height: 300px;
+}
+.colTwo > div > div{
+    display: flex;
+    flex-direction: row;
+    color: white;
+    padding: 0;
+    gap: 3vw;
+}
+.colTwo ul{
+    display: flex;
+    flex-direction: column;
+    color: white;
+    padding: 0;
+}
+.colTwo p{
+    margin-bottom: 15px;
+    color: white;
+}
+.colTwo a{
+    color: #CFCFCF;
+    text-decoration: none;
+    margin: 7px 0;
+    transition: .2s linear color;
+}
+.colTwo a:hover{
+    color: #FD5056;
+}
+
+.colThree{
+    display: flex;
+    flex-direction: column;
+    width: 20vw;
+    margin-left: 3vw;
+    padding: 0;
+}
+.colThree form{
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+}
+.colThree form input{
+    height: 45px;
+    width: 100%;
+    max-width: 250px;
+    margin-bottom: 10px;
+    padding: 0 10px;
+    border: none;
+    border-radius: 5px;
+    outline: none;
+    transition: .2s linear box-shadow;
+}
+.colThree form input:focus{
+    box-shadow: inset 0 0 0 2px #FD5056;
+}
+.colThree form button{
+    width: 50%;
+    border-radius: 5px;
+    max-width: 125px;
+    height: 45px;
+    border: none;
+    background-color: #FD5056;
+    color: white;
+    font-size: 18px;
+    margin-bottom: 60px;
+    transition: .3s linear background;
+}
+.colThree form button:hover{
+    background-color: rgb(255, 127, 131);
+}
+.colThree > p{
+    font-size: 15px;
+}
+
+
+
+
+
+
+
