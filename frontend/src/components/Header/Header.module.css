@@ -17,9 +17,14 @@ header{
     padding: 0 2.5vw;
     background-color: #f3f3f5;
 }
+.firstLine p{
+    margin-bottom: 0;
+}
 .contact{
     display: flex;
     flex-direction: row;
+    align-items: center;
+    justify-content: center;
     padding: 0;
 }
 .contact > p:first-child{
@@ -44,21 +49,61 @@ header{
     border-right: #CFCFCF .1px solid;
 }
 
+
 .secondLine{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
     height: 50px;
+    color: #70768C;
     padding: 0 2.5vw;
 }
 .secondLine div{
     display: flex;
-
+}
+.searchIcon{
+    transition: .2s color ease-in-out;
+}
+.searchIcon:hover{
+    color: #FD5056;
+    cursor: pointer;
 }
 nav ul{
     display: flex;
     flex-direction: row;
     list-style: none;
-    gap: 10px;
+    gap: 30px;
+}
+nav ul a{
+    text-decoration: none;
+    color: black;
+    transition: color .3s linear;
+}
+nav ul a:hover{
+    text-decoration: none;
+    color: #FD5056;
+}
+.secondLine > div:nth-child(2){
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    gap: 30px;
+    align-items: center;
+    width: 450px;
+    
+}
+.secondLine div:nth-child(2) p{
+    margin: 0;
+}
+
+.searchInput{
+    border: #CFCFCF 1px solid;
+    border-radius: 6px;
+    padding: 5px 8px;
+    outline: none;
+    transition: border .2s ease-in-out;
+}
+.searchInput:focus{
+    border-color: #FD5056;;
 }

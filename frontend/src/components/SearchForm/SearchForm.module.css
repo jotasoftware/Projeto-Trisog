@@ -20,28 +20,39 @@
     display: flex;
     flex-direction: column;
 }
-.container form div input{
-    width: 17vw;
-    height: 35px;
-    padding: 0 5px;
+.container form > div > div {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
     border: #CFCFCF 1px solid;
+    padding-left: 10px;
+    border-radius: 7px;
+    transition: border .2s ease-in-out;
+}
+.container form > div>  div:focus-within {
+    border-color: #FD5056;
+  }
+.container form div input{
+    width: 15vw;
+    height: 35px;
+    padding: 0 10px;
+    border: none;
     border-radius: 7px;
     transition: .2s linear border;
     outline: none;
-}
-.container form div input:focus{
-    border: #FD5056 1px solid;
+    color: #70768C;
 }
 .container form div select{
-    width: 17vw;
+    width: 15vw;
     height: 37px;
-    border: #CFCFCF 1px solid;
     border-radius: 7px;
+    border: none;
+    padding: 0 10px;
     transition: .2s linear border;
     outline: none;
-}
-.container form div select:focus{
-    border: #FD5056 1px solid;
+    color: #70768C;
+    -webkit-appearance: none; 
+    appearance: none;
 }
 .container form button{
     width: 6vw;

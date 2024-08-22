@@ -1,0 +1,75 @@
+.container{
+  padding: 20px 20px 0;
+  background-color: #f7f7f7;
+}
+
+.imageContainer {
+  position: relative;
+}
+.image{
+  display: block;
+  width: 100%;
+  max-height: 200px;
+}
+.heartIcon{
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  top: 10px;
+  right: 10px;
+  font-size: 18px;
+  color: rgb(177, 177, 177);
+  background: white;
+  border-radius: 50%;
+  transition: color .2s linear;
+}
+.heartIcon:hover{
+  color: rgb(255, 0, 0);
+  cursor: pointer;
+}
+
+.city{
+  margin-bottom: 10px;
+  font-size: 14px;
+}
+.container h2{
+  margin-top: 10px;
+  padding: 0;
+  font-size: 18px;
+}
+
+.reviewLine {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+.reviewLine > div{
+  display: flex;
+  flex-direction: row; 
+  padding: 0;
+}
+.reviewLine p{
+  margin: 0;
+}
+.reviewLine span{
+  display: flex;
+  background-color: #FD5056;
+  color: white;
+  border-radius: 5px;
+  align-items: center;
+  padding: 0 5px;
+  font-size: 12px;
+  margin-right: 10px;
+}
+
+.priceLine{
+  display: flex;
+  padding-top: 15px;
+  justify-content: space-between;
+  border-top: #CFCFCF .1px solid;
+}
+
+

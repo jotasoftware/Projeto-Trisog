@@ -1,4 +1,7 @@
-import {useState} from 'react'
+import {useState} from 'react';
+import { FaPaperPlane } from 'react-icons/fa';
+import { CiFlag1, CiCalendar } from "react-icons/ci"
+import { MdOutlinePeopleOutline } from "react-icons/md"
 
 import styles from './SearchForm.module.css'
 
@@ -13,13 +16,13 @@ const SearchForm = () => {
 
     //TODO Tirar esses tipos e buscar na API
     const types = [
-        { value: '', label: 'Select an option' },
+        { value: '', label: 'Activity' },
         { value: 'type1', label: 'Type 1' },
         { value: 'type2', label: 'Type 2' },
         { value: 'type3', label: 'Type 3' }
     ]
 
-    const handleChange = (e: React.ChangeEvent<HTMLSelectElement | HTMLInputElement>) => {
+    const handleChange = (e: React.ChangeEvent<HTMLSelectElement | HTMLInputElement>) =>{
         const name = e.target.name
         const value = e.target.value
         setFormData({
@@ -48,48 +51,62 @@ const SearchForm = () => {
         <form onSubmit={handleSubmit}>
             <div>
                 <label htmlFor="destination">Destination</label>
-                <input 
+                <div>
+                    <FaPaperPlane></FaPaperPlane>
+                    <input 
                     type="text" 
                     id='destination'
                     name='destination'
                     value={formData.destination}
                     onChange={handleChange}
+                    placeholder='Where to go?'
                 />
+                </div>
             </div>
             <div>
                 <label htmlFor="type">Type</label>
-                <select 
+                <div>
+                    <CiFlag1></CiFlag1>
+                    <select 
                     id='type'
                     name='type'
                     value={formData.type}
                     onChange={handleChange}
-                >
-                    {types.map((type) => (
-                        <option key={type.value} value={type.value}>
-                            {type.label}
-                        </option>
-                    ))}
-                </select>
+                    >
+                        {types.map((type) => (
+                            <option key={type.value} value={type.value}>
+                                {type.label}
+                            </option>
+                        ))}
+                    </select>
+                </div>
             </div>
             <div>
                 <label htmlFor="date">When</label>
-                <input 
-                    type="date" 
-                    id='date'
-                    name='date'
-                    value={formData.date}
-                    onChange={handleChange}
-                />
+                <div>
+                    <CiCalendar></CiCalendar>
+                    <input 
+                        type="date" 
+                        id='date'
+                        name='date'
+                        value={formData.date}
+                        onChange={handleChange}
+                    />
+                </div>
             </div>
             <div>
                 <label htmlFor="guests">Guests</label>
-                <input 
-                    type="text" 
-                    id='guests'
-                    name='guests'
-                    value={formData.guests}
-                    onChange={handleChange}
-                />
+                <div>
+                    <MdOutlinePeopleOutline></MdOutlinePeopleOutline>
+                    <input 
+                        type="text" 
+                        id='guests'
+                        name='guests'
+                        value={formData.guests}
+                        onChange={handleChange}
+                        aria-label='oi'
+                    />
+                </div>
             </div>
 
             <button type="submit">Search</button>

@@ -1,0 +1,16 @@
+.login{
+    display: flex;
+    align-items: center;
+    width: 130px;
+    justify-content: space-between;
+    transition: background .2s ease-in-out;
+    border-radius: 5px;
+    padding: 5px;
+    text-decoration: none;
+    color: black;
+}
+.login:hover{
+    text-decoration: none;
+    color: black;
+    background-color: #FD5056;
+}

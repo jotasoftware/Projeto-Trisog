@@ -1,0 +1,26 @@
+.carouselContainer{
+    max-width: 1600px;
+    width: 80vw;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+}
+  
+.carouselItem{
+    padding: 10px; 
+    margin: 0px;
+    margin-bottom: 50px;
+    border: none;
+}
+
+.carouselItem > div{
+    width: 17vw;
+    min-width: 130px;
+    border-radius: 0px;
+    border: none;
+}
+  
+.productImage{
+    width: 100%;
+    height: auto;
+}

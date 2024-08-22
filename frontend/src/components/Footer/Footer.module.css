@@ -6,7 +6,7 @@ footer{
     justify-content: space-between;
     background-color: #111;
     color: #CFCFCF;
-    font-size: 24px;
+    font-size: 16px;
 }
 
 .colOne{
@@ -98,7 +98,7 @@ footer{
     border: none;
     background-color: #FD5056;
     color: white;
-    font-size: 18px;
+    font-size: 15px;
     margin-bottom: 60px;
     transition: .3s linear background;
 }
