@@ -1,0 +1,48 @@
+.updatesContainer{
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0 10vw;
+    justify-content: space-around;
+    row-gap: 20px;
+    gap:20px;
+}
+.updatesContainer > div{
+    display: flex;
+    flex-direction: row;
+    width: 450px;
+    justify-content: center;
+    gap: 20px;
+}
+
+.updateInfo{
+    display: flex;
+    color: #a9afbb;
+    font-family: "Roboto", sans-serif;
+    font-weight: 300;
+    font-size: 14px;
+    flex-direction: column;
+    width: 250px;
+    justify-content: center;
+}
+.updateInfo > div{
+    display: flex;
+    color: #a9afbb;
+    font-family: "Roboto", sans-serif;
+    font-weight: 300;
+    font-size: 14px;
+    justify-content: flex-start;
+    gap: 20px;
+}
+.updateInfo > p{
+    font-family: "Roboto", sans-serif;
+    font-weight: 600;
+    color: #041036;
+    font-size: 15px;
+    margin: 0;
+}
+
+.updatesContainer img{
+    width: 160px;
+    height: 100px;
+    object-fit: cover;
+}

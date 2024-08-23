@@ -1,13 +1,34 @@
 import styles from './Footer.module.css';
-import { FaTwitter, FaLinkedin, FaFacebook } from 'react-icons/fa';
+import { useState } from 'react';
+import { FaTwitter, FaLinkedin, FaFacebook, FaPaperPlane } from 'react-icons/fa';
 
 const Footer = () => {
+    const[email, setEmail] = useState('');
+    const[error, setError] = useState('');
+    const[borderColor, setBorderColor] = useState('#FD5056')
+
+    const regexEmail = (email: string) => {
+        const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
+        return emailRegex.test(email)
+    }
+
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const value = e.target.value
+        setEmail(value)
+        if (!regexEmail(value)) {
+            setError('Invalid email')
+            setBorderColor('#FD5056')
+        } else {
+            setBorderColor('')
+            setError('')
+        }
+    }
   return (
     <footer>
         <div className={styles.colOne}>
             <p>Logo</p>
             <div>
-                <p>Need any help?</p>
+                <p className={styles.cursive}>Need any help?</p>
                 <p style={{ color: 'white'}}>Call Us: <span>(888)1234 5678</span></p>
             </div>
             <div>
@@ -61,7 +82,7 @@ const Footer = () => {
                 </ul>
             </div>
             <div>
-                <p>Company</p>
+                <p>Top Destination</p>
                 <div>
                     <ul>
                         <a href="#">Las Vegas</a>
@@ -82,7 +103,21 @@ const Footer = () => {
             <div>
                 <p>Sign up Newsletter</p>
                 <form>
-                    <input type="text" />
+                    <div 
+                        style={{
+                            border: `${borderColor} 1px solid`
+                        }}>
+                        <FaPaperPlane></FaPaperPlane>
+                        <input 
+                            type="text" 
+                            id='destination'
+                            name='destination'
+                            value={email}
+                            onChange={handleChange}
+                            placeholder='Enter email...'
+                        />
+                    </div>
+                     {error && <p id="email-error" style={{ color: 'red', fontSize: '10px'}}>{error}</p>}
                     <button type="submit">Submit</button>
                 </form>
             </div>

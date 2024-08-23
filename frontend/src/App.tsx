@@ -1,13 +1,14 @@
 import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
+import {BrowserRouter, Route, Routes, Link }from 'react-router-dom'
+
 
 //TODO ARRUMAR DEPOIS
-import Header from './components/Header/Header'
-import SearchForm from './components/SearchForm/SearchForm'
-import Footer from './components/Footer/Footer'
-import CarouselCards from './components/CarouselCards/CarouselCards'
-import ImageMosaic from './components/ImageMosaic/ImageMosaic'
+import LoginPage from './pages/LoginPage/LoginPage'
+import RegisterPage from './pages/RegisterPage/RegisterPage'
+import HomePage from './pages/HomePage/HomePage'
+import Layout from './pages/Layout/Layout'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -15,11 +16,17 @@ function App() {
   return (
     <>
       <div>
-        <Header />
-        <SearchForm />
-        <CarouselCards></CarouselCards>
-        <ImageMosaic></ImageMosaic>
-        <Footer />
+        <BrowserRouter>
+          <Routes>
+              <Route path='/' element={<Layout />}>
+                <Route path='/' element={<HomePage />}></Route>
+              </Route>
+              <Route path='/login' element={<LoginPage />}></Route>
+              <Route path='/register' element={<RegisterPage />}></Route>
+          </Routes>
+          {/* <Footer /> */}
+        </BrowserRouter>
+        
       </div>
     </>
   )

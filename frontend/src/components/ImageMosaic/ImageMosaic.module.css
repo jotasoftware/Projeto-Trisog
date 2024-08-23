@@ -1,5 +1,5 @@
 .grid {
-    margin-top: 100px;
+    margin-top: 30px;
     display: grid;
     grid-template-areas:
       "img1 img1 img2 img2 img3 img3 img4 img4"
@@ -80,4 +80,14 @@ img{
     padding: 10px; 
     border-radius: 5px;
     color: white;
+}
+.textDescription p{
+    font-size: 12px;
+    font-family: "Roboto", sans-serif;
+    font-weight: 400;
+    margin-bottom: 5px;
+}
+.textDescription h2{
+    font-family: "Pacifico", cursive;
+    font-weight: 400;
 }

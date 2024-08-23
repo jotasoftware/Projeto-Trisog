@@ -1,19 +1,20 @@
 import React from 'react'
 import styles from './CarouselCards.module.css'
-import CardsTours from '../CardsTours/CardsTours';
+import Cards from '../Cards/Cards';
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 
-const CarouselCards = () => {
+interface CarouselCardsProps {
+  cardType: "types" | "tours";
+}
+
+const CarouselCards: React.FC<CarouselCardsProps> = ({cardType}) => {
+  const slidesToSlide= cardType === "types" ? 6 : 4
+  const itemClass = cardType === "types" ? styles.typesItem : styles.toursItem
   const responsive = {
-    superLargeDesktop: {
-      // the naming can be any, depends on you.
-      breakpoint: { max: 4000, min: 3000 },
-      items: 5
-    },
     desktop: {
       breakpoint: { max: 3000, min: 1024 },
-      items: 4,
+      items: slidesToSlide,
     },
     tablet: {
       breakpoint: { max: 1024, min: 464 },
@@ -23,7 +24,9 @@ const CarouselCards = () => {
       breakpoint: { max: 464, min: 0 },
       items: 1
     }
-  };
+  }
+
+
   return (
     <div>
       <Carousel
@@ -39,28 +42,24 @@ const CarouselCards = () => {
         containerClass={styles.carouselContainer}
         removeArrowOnDeviceType={["tablet", "mobile"]}
         dotListClass={styles.dotListStyle}
-        itemClass={styles.carouselItem}
-        slidesToSlide={4}
+        itemClass={itemClass}
+        slidesToSlide={slidesToSlide}
       >
-        <CardsTours></CardsTours>
-        <CardsTours></CardsTours>
-        <CardsTours></CardsTours>
-        <CardsTours></CardsTours>
-        <CardsTours></CardsTours>
-        <CardsTours></CardsTours>
-        <CardsTours></CardsTours>
-        <CardsTours></CardsTours>
-        <CardsTours></CardsTours>
-        <CardsTours></CardsTours>
-        <CardsTours></CardsTours>
-        <CardsTours></CardsTours>
-        <CardsTours></CardsTours>
-        <CardsTours></CardsTours>
-        <CardsTours></CardsTours>
-        <CardsTours></CardsTours>
-        <CardsTours></CardsTours>
-        <CardsTours></CardsTours>
-      </Carousel>;
+        <Cards cardType={cardType}></Cards>
+        <Cards cardType={cardType}></Cards>
+        <Cards cardType={cardType}></Cards>
+        <Cards cardType={cardType}></Cards>
+        <Cards cardType={cardType}></Cards>
+        <Cards cardType={cardType}></Cards>
+        <Cards cardType={cardType}></Cards>
+        <Cards cardType={cardType}></Cards>
+        <Cards cardType={cardType}></Cards>
+        <Cards cardType={cardType}></Cards>
+        <Cards cardType={cardType}></Cards>
+        <Cards cardType={cardType}></Cards>
+        <Cards cardType={cardType}></Cards>
+        <Cards cardType={cardType}></Cards>
+      </Carousel>
     </div>
   )
 }

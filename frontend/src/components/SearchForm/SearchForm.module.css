@@ -1,9 +1,12 @@
 .container{
     background-color: white;
+    position: absolute;
+    top: calc(100% - 55px);
+    left: 10vw;
     width: 80vw;
     margin: 0 auto;
     border-radius: 10px;
-    padding: 20px 25px;
+    padding: 15px 25px 20px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 .container form {
@@ -15,6 +18,10 @@
 }
 .container form label{
     margin-bottom: 8px;
+    font-family: "Pacifico", cursive;
+    font-weight: 200;
+    font-size: 13px;
+    color: #3B4461;
 }
 .container form div {
     display: flex;
@@ -26,7 +33,7 @@
     align-items: center;
     border: #CFCFCF 1px solid;
     padding-left: 10px;
-    border-radius: 7px;
+    border-radius: 5px;
     transition: border .2s ease-in-out;
 }
 .container form > div>  div:focus-within {
@@ -59,6 +66,7 @@
     height: 35px;
     background-color: #FD5056;
     color: white;
+    cursor: pointer;
     border: none;
     border-radius: 7px;
     transition: .3s linear background;

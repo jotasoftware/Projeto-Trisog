@@ -1,6 +1,7 @@
 .container{
   padding: 20px 20px 0;
   background-color: #f7f7f7;
+  color: #797F75;
 }
 
 .imageContainer {
@@ -20,7 +21,7 @@
   height: 34px;
   top: 10px;
   right: 10px;
-  font-size: 18px;
+  font-size: 13px;
   color: rgb(177, 177, 177);
   background: white;
   border-radius: 50%;
@@ -34,11 +35,16 @@
 .city{
   margin-bottom: 10px;
   font-size: 14px;
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
 }
 .container h2{
-  margin-top: 10px;
+  margin-top: 5px;
   padding: 0;
-  font-size: 18px;
+  font-size: 20px;
+  font-family: "Roboto", sans-serif;
+  font-weight: 700;
+  color: #081538;
 }
 
 .reviewLine {
@@ -64,12 +70,48 @@
   font-size: 12px;
   margin-right: 10px;
 }
-
 .priceLine{
   display: flex;
   padding-top: 15px;
   justify-content: space-between;
   border-top: #CFCFCF .1px solid;
 }
+.price{
+  color: #081538;
+  font-family: "Kaushan Script", cursive;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 18px;
+}
 
 
+
+
+
+
+
+
+.containerTour{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.containerTour h2{
+  font-size: 20px;
+  margin: 20px 0 0;
+  font-family: "Roboto", sans-serif;
+  font-weight: 700;
+  color: #081538;
+}
+.containerTour p{
+  color: #a9afbb;
+  margin: 0;
+}
+.containerTour .priceLine{
+  border: none;
+  justify-content: flex-start;
+  gap: 10px;
+}
+.containerTour .price{
+  color: #FD5056;
+}

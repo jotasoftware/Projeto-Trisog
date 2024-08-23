@@ -6,7 +6,10 @@ header{
     display: flex;
     flex-direction: column;
     gap: 0; 
-}
+    font-family: "Roboto", sans-serif;
+    font-weight: 400;
+    color: #70768C;
+}   
 
 .firstLine{
     display: flex;
@@ -15,6 +18,7 @@ header{
     align-items: center;
     height: 35px;
     padding: 0 2.5vw;
+    font-size: 13px;
     background-color: #f3f3f5;
 }
 .firstLine p{
@@ -61,6 +65,7 @@ header{
 }
 .secondLine div{
     display: flex;
+    align-items: center;
 }
 .searchIcon{
     transition: .2s color ease-in-out;
@@ -69,15 +74,23 @@ header{
     color: #FD5056;
     cursor: pointer;
 }
+nav{
+    margin-left: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 nav ul{
     display: flex;
     flex-direction: row;
     list-style: none;
+    align-items: center;
+    padding: 12px 0 0;
     gap: 30px;
 }
 nav ul a{
     text-decoration: none;
-    color: black;
+    color: #70768C;
     transition: color .3s linear;
 }
 nav ul a:hover{
@@ -102,8 +115,9 @@ nav ul a:hover{
     border-radius: 6px;
     padding: 5px 8px;
     outline: none;
+    color: #70768C;
     transition: border .2s ease-in-out;
 }
 .searchInput:focus{
-    border-color: #FD5056;;
+    border-color: #FD5056;
 }
