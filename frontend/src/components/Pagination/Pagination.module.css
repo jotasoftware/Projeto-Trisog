@@ -1,0 +1,73 @@
+.infoLine{
+    display: flex;
+    justify-content: space-between;
+    padding-left: 20px;
+    margin-bottom: 15px;
+    font-family: "Inter", sans-serif;
+    font-size: 14px;
+    color: #676D85;
+}
+.infoLine div{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 10px 0 20px;
+    width: 270px;
+    
+}
+.infoLine p{
+    margin: 0;
+    display: flex;
+    align-items: center;
+}
+.infoLine select{
+    width: 70%;
+    border: 1px solid #676D85;
+    outline: none;
+    color: #70768C;
+    padding: 5px 5px;
+    border-radius: 5px;
+}
+
+
+.cardsContainer{
+    display: flex;
+    flex-wrap: wrap;
+    width: 880px;
+    gap: 20px;
+    justify-content: flex-start;
+    padding-left: 20px;
+}
+.cardContainer{
+    width: 270px;
+    min-width: 130px;
+    border-radius: 0px;
+    border: none;
+    transition: transform .2s ease-in-out;
+}
+.cardContainer:hover{
+    transform: scale(1.02);
+}
+
+.numbersMenu{
+    padding: 50px 0 0 20px;
+    display: flex;
+    justify-content: center;
+    gap: 7px;
+}
+.numbersMenu button{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: .5px solid #a9afbb;
+    transition: background .3s ease-in-out, color .3s ease-in-out;
+    outline: none;
+}
+.numbersMenu button:not(.active):hover{
+    background-color: rgba(255, 171, 178, 0.158);
+}
+.numbersMenu button.active{
+    background-color: #FD5056;
+    border: .5px solid #a9afbb;
+    color: white;
+}

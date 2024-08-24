@@ -8,7 +8,7 @@ const RegisterPage = () => {
     //TODO seta de voltar
   return (
     <div className={styles.page}>
-        <div className={styles.backPage}><FaArrowLeft size={24}></FaArrowLeft></div>
+        <Link to='/' className={styles.backPage}><FaArrowLeft size={24}></FaArrowLeft></Link>
         <div className={styles.container}>
             <header>
                 <img src="./img1.png" alt="" />

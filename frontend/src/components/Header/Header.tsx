@@ -1,4 +1,5 @@
 import {useState} from 'react'
+import { Link, useLocation } from 'react-router-dom'
 import styles from './Header.module.css'
 import LoginSignup from '../LoginSignup/LoginSignup'
 import { FaTwitter, FaLinkedin, FaGoogle, FaPinterest, FaSearch, FaChevronDown } from 'react-icons/fa'
@@ -7,6 +8,8 @@ const Header: React.FC = () => {
     const [searchActive, setSearchActive] = useState(false)
     const [showInput, setShowInput] = useState(false)
     const [searchInput, setSearchInput] = useState('')
+    const location = useLocation();
+    const currentPath = location.pathname;
 
     const handleSearch = () => {
         if(searchActive == false){
@@ -90,25 +93,25 @@ const Header: React.FC = () => {
                     <nav>
                         <ul>
                             <li>
-                                <a href="#">Home</a>
+                                <Link to="/" className={currentPath === '/' ? styles.active : ''}>Home</Link>
                             </li>
                             <li>
-                                <a href="#">About</a>
+                                <Link to="/" className={currentPath === '/about' ? styles.active : ''}>About</Link>
                             </li>
                             <li>
-                                <a href="#">Tours</a>
+                                <Link to="/tourpackage" className={currentPath === '/tourpackage' ? styles.active : ''}>Tours</Link>
                             </li>
                             <li>
-                                <a href="#">Destination</a>
+                                <Link to="/" className={currentPath === '/destination' ? styles.active : ''}>Destination</Link>
                             </li>
                             <li>
-                                <a href="#">Blog</a>
+                                <Link to="/" className={currentPath === '/blog' ? styles.active : ''}>Blog</Link>
                             </li>
                             <li>
-                                <a href="#">Pages</a>
+                                <Link to="/" className={currentPath === '/pages' ? styles.active : ''}>Pages</Link>
                             </li>
                             <li>
-                                <a href="#">Contact</a>
+                                <Link to="/" className={currentPath === '/contact' ? styles.active : ''}>Contact</Link>
                             </li>
                         </ul>
                     </nav>

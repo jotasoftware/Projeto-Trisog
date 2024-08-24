@@ -121,3 +121,7 @@ nav ul a:hover{
 .searchInput:focus{
     border-color: #FD5056;
 }
+
+.active{
+    color: #FD5056;
+}

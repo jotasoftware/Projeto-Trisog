@@ -1,13 +1,13 @@
 import React from 'react'
 import styles from './LoginSignup.module.css'
 
-import { FaUser } from 'react-icons/fa'
+import { FiUser } from "react-icons/fi";
 import { Link } from 'react-router-dom'
 
 const LoginSignup = () => {
   return (
     <Link to='/login' className={styles.login}>
-      <FaUser size={15} />
+      <FiUser size={15} strokeWidth={3}/>
       <p>Login / Sign up</p>
     </Link>
   )

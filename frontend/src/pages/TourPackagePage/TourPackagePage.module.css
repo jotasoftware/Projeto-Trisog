@@ -1,0 +1,193 @@
+.titleSection{
+    background-color: rgb(110, 110, 255);
+    height: 280px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 100px;
+    justify-content: center;
+    align-items: center;
+}
+.titleSection h1{
+    font-family: "Work Sans", sans-serif;
+    font-style: normal;
+    letter-spacing: 1.5px;
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 56px;
+    padding-bottom: 0;
+    margin-bottom: 0;
+}
+.titleSection > div:nth-child(2){
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+.titleSection div .linkHome{
+    color: white;
+    font-family: "Work Sans", sans-serif;
+    font-weight: 500;
+    font-size: 14px;
+}
+.titleSection div p{
+    color: white;
+    font-family: "Work Sans", sans-serif;
+    font-weight: 500;
+    font-size: 14px;
+}
+.titleSection div .pColor{
+    color: #FD5056;
+}
+
+
+.mainContainer{
+    padding: 50px 10vw;
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+}
+
+
+aside{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+aside > div{
+    width: 280px;
+    background-color: #F7F8FA;
+    display: flex;
+    padding: 20px 25px;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+}
+aside div h3{
+    padding: 0;
+    font-size: 20px;
+    font-family: "Work Sans", sans-serif;
+    font-weight: 700;
+    color: #081538;
+}
+
+
+.searchDiv{
+    height: 140px;
+    gap: 7px;
+}
+.searchDiv div{
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+    align-items: center;
+    height: 48px;
+    padding: 0 20px;
+    margin: 0;
+    background-color: white;
+    border-radius: 8px;
+}
+.searchDiv div input{
+    height: 30px;
+    width: 80%;
+    max-width: 250px;
+    border: none;
+    border-radius: 5px;
+    outline: none;
+}
+
+
+.filterDiv{
+    height: 180px;
+}
+.filterDiv > div{
+    width: 100%;
+}
+.filterDiv input{
+    width: 100%;
+}
+.filterDiv .values{
+    display: flex;
+    justify-content: space-between;
+}
+.filterDiv .values p{
+    font-family: "Inter", sans-serif;
+    font-size: 17px;
+}
+.filterDiv .values p:nth-child(2){
+    color: #081538;
+    font-weight: 800;
+}
+.filterDiv button {
+    width: 6vw;
+    height: 35px;
+    background-color: #FD5056;
+    color: white;
+    cursor: pointer;
+    border: none;
+    border-radius: 7px;
+    transition: .3s linear background;
+}
+
+.filterDiv button:hover{
+    background-color: rgb(255, 127, 131);
+}
+
+
+.categoriesDiv{
+    gap: 13px;
+}
+.categoriesDiv > div{
+    display: flex;
+    flex-direction: column;
+    font-family: "Inter", sans-serif;
+    font-size: 16px;
+    color: #676D85;
+}
+.categoriesDiv > div > label{
+    display: flex;
+    gap: 6px;
+}
+.categoriesDiv > div > label > input{
+    color: blue;
+}
+
+
+.destinationsDiv{
+    gap: 13px;
+}
+.destinationsDiv h4{
+    font-family: "Inter", sans-serif;
+    font-size: 18px;
+}
+.destinationsDiv > div{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+.destinationsDiv > div > div{
+    display: flex;
+    flex-direction: column;
+    font-family: "Inter", sans-serif;
+    font-size: 16px;
+}
+.destinationsDiv > div label{
+    display: flex;
+    color: #676D85;
+    gap: 6px;
+    margin: 0 0 6px;
+}
+
+
+.reviewsDiv{
+    gap: 13px;
+}
+.reviewsDiv > div{
+    gap: 15px;
+}
+.reviewsDiv label{
+    font-family: "Inter", sans-serif;
+    color: #676D85;
+    display: flex;
+    gap: 6px;
+}

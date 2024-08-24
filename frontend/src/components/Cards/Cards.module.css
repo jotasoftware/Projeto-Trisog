@@ -1,7 +1,7 @@
 .container{
   padding: 20px 20px 0;
   background-color: #f7f7f7;
-  color: #797F75;
+  color: #A9AFBB;
 }
 
 .imageContainer {
@@ -17,10 +17,10 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 34px;
-  height: 34px;
-  top: 10px;
-  right: 10px;
+  width: 30px;
+  height: 30px;
+  top: 13px;
+  right: 13px;
   font-size: 13px;
   color: rgb(177, 177, 177);
   background: white;
@@ -34,9 +34,10 @@
 
 .city{
   margin-bottom: 10px;
-  font-size: 14px;
+  font-size: 12px;
   font-family: "Roboto", sans-serif;
   font-weight: 400;
+
 }
 .container h2{
   margin-top: 5px;
@@ -60,19 +61,25 @@
 .reviewLine p{
   margin: 0;
 }
+.reviewLine > div > p{
+  font-size: 14px;
+}
 .reviewLine span{
   display: flex;
   background-color: #FD5056;
   color: white;
   border-radius: 5px;
   align-items: center;
-  padding: 0 5px;
+  justify-content: space-between;
+  gap: 2px;
+  padding: 2px 5px;
   font-size: 12px;
   margin-right: 10px;
 }
 .priceLine{
   display: flex;
   padding-top: 15px;
+  font-size: 14px;
   justify-content: space-between;
   border-top: #CFCFCF .1px solid;
 }
@@ -83,11 +90,6 @@
   font-weight: 600;
   font-size: 18px;
 }
-
-
-
-
-
 
 
 

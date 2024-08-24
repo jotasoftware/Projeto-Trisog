@@ -13,6 +13,7 @@
     left: 10px;
     padding: 10px;
     transition: .2s linear color;
+    color: #FD5056;
 }
 .backPage:hover {
     color: white;

@@ -15,11 +15,15 @@
     display: flex;
     justify-content: center;
 }
-.toursItem > div{
+.toursItem > div > div{
     width: 17.5vw;
     min-width: 130px;
     border-radius: 0px;
     border: none;
+    transition: transform .2s ease-in-out;
+}
+.toursItem > div>  div:hover{
+    transform: scale(1.02);
 }
   
 .productImage{

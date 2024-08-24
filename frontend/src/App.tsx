@@ -1,14 +1,12 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import {BrowserRouter, Route, Routes, Link }from 'react-router-dom'
 
-
-//TODO ARRUMAR DEPOIS
 import LoginPage from './pages/LoginPage/LoginPage'
 import RegisterPage from './pages/RegisterPage/RegisterPage'
-import HomePage from './pages/HomePage/HomePage'
 import Layout from './pages/Layout/Layout'
+import HomePage from './pages/HomePage/HomePage'
+import TourPackagePage from './pages/TourPackagePage/TourPackagePage'
+import TourDetailsPage from './pages/TourDetailsPage/TourDetailsPage'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -20,11 +18,12 @@ function App() {
           <Routes>
               <Route path='/' element={<Layout />}>
                 <Route path='/' element={<HomePage />}></Route>
+                <Route path='/tourpackage' element={<TourPackagePage />}></Route>
+                <Route path='/tourdetails' element={<TourDetailsPage />}></Route>
               </Route>
               <Route path='/login' element={<LoginPage />}></Route>
               <Route path='/register' element={<RegisterPage />}></Route>
           </Routes>
-          {/* <Footer /> */}
         </BrowserRouter>
         
       </div>

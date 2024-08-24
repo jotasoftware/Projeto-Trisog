@@ -12,23 +12,22 @@
     color: #FD5056;
 }
 .titleSection h1{
-    font-family: "PT Sans Narrow", sans-serif;
+    font-family: "Work Sans", sans-serif;
     font-style: normal;
     letter-spacing: 1.5px;
     color: #ffffff;
     font-weight: 700;
-    font-size: 60px;
+    font-size: 56px;
     padding-bottom: 0;
     margin-bottom: 0;
 }
 .titleSection p{
     color: #ffffff;
     padding-top: 0;
-    font-family: "Roboto", sans-serif;
+    font-family: "Work Sans", sans-serif;
     font-weight:500;
     margin: 0;
-    font-size: 15px;
-    letter-spacing: .7px;
+    font-size: 14px;
 }
 
 .cardsSection{
