@@ -23,6 +23,8 @@ const CardsTours: React.FC<CardsProps> = ({cardType, city, tour, review, quant, 
     navigate('/tourdetails', {state: {id}})
   }
 
+  
+
   return (
     <>
     {cardType === "tours" ? (

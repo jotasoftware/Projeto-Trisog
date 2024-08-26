@@ -10,10 +10,10 @@ type Destinations = {
 }
 
 const TourPackagePage = () => {
-    const [search, setSearch] = useState('')
-    const [filter, setFilter] = useState(150)
+    const [search, setSearch] = useState<string>('')
+    const [filter, setFilter] = useState<number>(150)
     const [allCategories, setAllCategories] = useState<string[]>([])
-    const [categories, setCategories] = useState<string[]>([])
+    const [categories, setCategories] = useState<(string)[]>([])
     const [allDestinations, setAllDestinations] = useState<Destinations>({})
     const [destinations, setDestinations] = useState<string[]>([])
     const [stars, setStars] = useState<string[]>([])
@@ -71,6 +71,7 @@ const TourPackagePage = () => {
                         <CiSearch className={styles.searchIcon} size={24}/>
                     </div>
                 </div>
+
                 <div className={styles.filterDiv}>
                     <h3>Filter By</h3>
                     <div>
@@ -88,6 +89,7 @@ const TourPackagePage = () => {
                         <button>Submit</button>
                     </div>
                 </div>
+
                 <div className={styles.categoriesDiv}>
                     <h3>Categories</h3>
                     <div>
@@ -104,6 +106,7 @@ const TourPackagePage = () => {
                         ))}
                     </div>
                 </div>
+
                 <div className={styles.destinationsDiv}>
                     <h3>Destinations</h3>
                     <div>
@@ -125,6 +128,7 @@ const TourPackagePage = () => {
                         ))}
                     </div>
                 </div>
+
                 <div className={styles.reviewsDiv}>
                     <h3>Reviews</h3>
                     <div>
