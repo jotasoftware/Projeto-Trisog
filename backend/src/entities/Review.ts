@@ -6,23 +6,35 @@ class Review {
     id!: number
     
     @Column()
-    tour!: string
-
-    @Column()
-    country!: string
+    tourId!: number
 
     @Column()
     services!: number
+
     @Column()
     prices!: number
+
     @Column()
     location!: number
+
     @Column()
     food!: number
+    
     @Column()
-    amenties!: number
+    amenities!: number
+
     @Column()
     room!: number
+
+    @Column({ type: 'float', default: 0 })
+    average!: number
+
+    @Column()
+    name!: string
+
+    @Column()
+    emailAddress!: string
+
     @Column()
     comment!: string
     

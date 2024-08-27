@@ -4,15 +4,15 @@ import City from './City'
 import Type from './Type'
 
 @Entity('tours')
-class Tour {
+export default class Tour {
     @PrimaryGeneratedColumn()
-    id!: number
+    id!: number;
     
     @Column()
-    tour!: string
+    tour?: string;
 
     @Column()
-    image!: string
+    image!: string;
 
     @ManyToOne(() => City, (city) => city.tours)
     @JoinColumn({name: 'cityId'})
@@ -41,7 +41,8 @@ class Tour {
     dateStart!: Date
 
     @Column()
-    averageReview?: number
-}
+    time!: number
 
-export default Tour;
+    @Column()
+    overview!: string
+}

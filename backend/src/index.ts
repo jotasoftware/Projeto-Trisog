@@ -12,4 +12,4 @@ const syncDatabase = async () => {
         console.error('Error during Data Source initialization:', error);
     }
 }
-  syncDatabase();
+syncDatabase();
