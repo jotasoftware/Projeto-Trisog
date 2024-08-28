@@ -1,8 +1,7 @@
 import React from 'react'
 import styles from './Cards.module.css'
-import { FaRegHeart } from 'react-icons/fa'
+import { FaRegHeart, FaStar } from 'react-icons/fa'
 import { CiClock2 } from "react-icons/ci";
-import { CiStar } from "react-icons/ci";
 import { PiMountainsDuotone } from "react-icons/pi";
 import { useNavigate } from 'react-router-dom';
 
@@ -40,7 +39,7 @@ const CardsTours: React.FC<CardsProps> = ({cardType, city, tour, review, quant, 
           <h2>{tour}</h2>
           <div className={styles.reviewLine}>
             <div>
-              <span><CiStar size={16} strokeWidth={1}/>{review}</span>
+              <span><FaStar size={14} strokeWidth={1}/>{review}</span>
               <p>{quant} reviews</p>
             </div>
             <div>

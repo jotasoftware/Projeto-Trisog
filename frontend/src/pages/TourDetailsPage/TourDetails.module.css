@@ -1,0 +1,197 @@
+.container{
+    padding: 0 10vw;
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+.container main {
+    width: 52vw;
+}
+
+
+.imageSection {
+    height: 430px;
+    position: relative;
+}
+.imageSection .imageButtons{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    position: absolute;
+    top: 89%;
+    left: 70%;
+    height: 10px;
+}
+.imageSection .imageButtons button{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 12px;
+    gap: 5px;
+    border: 1px solid #cfcfcfa6;
+    background-color: white;
+    height: 35px;
+    font-family: "Inter", sans-serif;
+    color: #081538;
+    width: 100px;
+    font-size: 15px;
+    font-weight: 600;
+    border-radius: 8px;
+    transition: .3s linear background;
+}
+.imageSection .imageButtons button:hover{
+    border: 1px solid rgb(255, 127, 131);
+    background-color: rgb(255, 127, 131);
+}
+
+
+.titleSection{
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+    border-bottom: 1px solid #cfcfcfa6;
+}
+.titleSection .cityLine{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    color: #8D92A5;
+    font-size: 15px;
+}
+.titleSection .cityLine div{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 5px;
+}
+.titleSection .cityLine .iconsDiv{
+    gap: 15px;
+}
+.titleSection .cityLine .iconsDiv .icons{
+    transition: .2s linear color;
+}
+.titleSection .cityLine .iconsDiv .icons:hover{
+    color: #FD5056;
+}
+.titleSection .cityLine div a{
+    margin: 0 0 0 10px;
+    color: #FD5056;
+}
+.titleSection .cityLine div p{
+    margin: 0;
+}
+.titleSection h1{
+    margin-top: 10px;
+    color: #081538;
+    padding-bottom: 5px;
+    font-family: "Work Sans";
+    font-weight: 700;
+    font-size: 32px;
+}
+
+
+.detailsSection{
+    margin-top:20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.detailsSection h6{
+    font-family: "Inter", sans-serif;
+    font-weight: 400;
+    color: #8D92A5;
+    font-size: 15px;
+    margin: 0
+}
+.detailsSection p{
+    margin: 0;
+    font-family: "Work Sans";
+    font-weight: 600;
+    color: #081538;
+    font-size: 15px;
+}
+.detailsSection p.detailColor{
+    color: #FD5056;
+}
+.detailsSection .detailAverageReview{
+    width: 22%;
+}
+.detailsSection .detailAverageReview > div{
+    display: flex;
+    align-items: center;
+    gap: 2px;
+}
+.detailsSection .detailAverageReview > div .starDetail{
+    margin-bottom: 2px;
+    color: #FD5056;
+}
+.detailsSection .detailAverageReview > div > p:nth-child(3){
+    color: #8D92A5;
+    font-size: 13px;
+    font-weight: 400;
+}
+
+
+.overviewSection{
+    margin-top: 25px;
+}
+.title{
+    margin-top: 10px;
+    color: #081538;
+    padding-bottom: 5px;
+    font-family: "Work Sans";
+    font-weight: 700;
+    font-size: 26px;
+}
+.overviewSection p{
+    font-family: "Inter", sans-serif;
+    color: #8D92A5;
+    font-size: 15px;
+    margin: 0
+}
+
+
+.averageReviewContainer{
+    display: flex;
+    flex-direction: row;
+    background-color: #f7f8fa;
+    justify-content: space-between;
+    padding: 35px;
+    height: 260px;
+}
+.averageReviewSection .firstColumn{
+    background-color: #FD5056;
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+.averageReviewSection .firstColumn span{
+    font-family: "Inter", sans-serif;
+    font-weight: 700;
+    font-size: 60px;
+}
+.averageReviewSection .firstColumn div{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+}
+.averageReviewSection .firstColumn p{
+    margin: 0;
+    font-family: "Inter", sans-serif;
+    font-weight: 300;
+}
+.averageReviewSection .secondColumn{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    flex-wrap: wrap;
+    gap: 20px;
+    column-gap: 20px;
+}

@@ -38,7 +38,7 @@
 }
 .container form > div>  div:focus-within {
     border-color: #FD5056;
-  }
+}
 .container form div input{
     width: 15vw;
     height: 35px;
@@ -60,6 +60,10 @@
     color: #70768C;
     -webkit-appearance: none; 
     appearance: none;
+}
+input[type="date"]::-webkit-calendar-picker-indicator {
+    cursor: pointer;
+    filter: invert(50%) sepia(100%) saturate(100%) hue-rotate(180deg);
 }
 .container form button{
     width: 6vw;

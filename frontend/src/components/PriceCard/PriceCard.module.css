@@ -1,0 +1,188 @@
+.container{
+    background-color: #f7f7f7;
+    width: 350px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #081538;
+    height: 600px;
+}
+.container h3{
+    font-size: 16px;
+}
+
+
+.priceLine{
+    font-family: "Work Sans";
+    width: 80%;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: flex-start;
+    padding: 0 0 5px;
+    gap: 5px;
+    border-bottom: 1px solid #cfcfcfa6;
+    margin: 15px 0 10px;
+}
+.priceLine p{
+    margin-bottom: 7px;
+    font-size: 14px;
+    font-weight: 500;
+}
+.priceLine span{
+    font-family: "Work Sans";
+    font-weight: 700;
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+    color: #081538;
+    font-size: 30px;
+}
+
+
+.dateLine {
+    width: 80%;
+    padding: 0;
+
+}
+.dateLine input{
+    width: 280px;
+    height: 46px;
+    outline: none;
+    border: 1px solid #cfcfcfa6;
+    border-radius: 7px;
+    padding: 0 10px;
+}
+
+
+.timeLine {
+    width: 80%;
+    padding: 0;
+    margin: 0;
+
+}
+.timeLine div{
+    width:280px;
+    height: 46px;
+    outline: none;
+    border: 1px solid #cfcfcfa6;
+    border-radius: 7px;
+    padding: 0 10px;
+    background-color: white;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+}
+.timeLine div select{
+    appearance: none;
+    border: none;
+    width: 100%;
+    outline: none;
+    height: 100%;
+}
+.timeLine div .arrow{
+    position: absolute;
+    left: 250px;
+    pointer-events: none;
+    color: #676D85;
+}
+
+
+.ticketLine{
+    display: flex;
+    width: 80%;
+    flex-direction: column;
+    padding: 0 0 17px;
+    border-bottom: 1px solid #cfcfcfa6;
+
+}
+.ticketLine > div{
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    gap: 15px;
+    width: 100%;
+}
+.ticketLine > div > div{
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0;
+    font-family: "Inter", sans-serif;
+    font-size: 14px;
+    color: #676D85;
+}
+.ticketLine > div > div p{
+    margin: 0;
+}
+.ticketLine > div > div > div{
+    display: flex;
+    flex-direction: row;
+    gap: 7px;
+}
+.ticketLine > div > div > div > button, .ticketLine > div > div > div > span {
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+    border: 1px solid #cfcfcfa6;
+    width: 30px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: transparent;
+    transition: .3s linear background;
+    height: 30px;
+}
+
+
+.totalLine {
+    display: flex;
+    padding: 0;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 80%;
+    align-items: center;
+}
+.totalLine p{
+    font-family: "Inter", sans-serif;
+    font-size: 14px;
+    color: #676D85;
+    margin: 0;
+}
+
+.totalLine span{
+    font-family: "Work Sans";
+    font-weight: 700;
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+    color: #FD5056;
+    font-size: 22px;
+}
+
+.container > button{
+    width: 80%;
+    font-size: 14px;
+    font-family: "Inter", sans-serif;
+    height:40px;
+    background-color: #FD5056;
+    color: white;
+    cursor: pointer;
+    border: none;
+    border-radius: 7px;
+    transition: .3s linear background;
+    margin-bottom: 20px;
+}
+.container button:focus{
+    outline: none;
+    box-shadow: none;
+}
+.container button:hover{
+    background-color: rgb(255, 127, 131);
+}

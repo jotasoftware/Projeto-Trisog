@@ -1,0 +1,40 @@
+.lineContainer{
+    display: flex;
+    flex-direction: row;
+    width: 220px;
+    align-items: flex-end;
+}
+/* .lineContainer >span{
+    margin-top: ;
+} */
+.lineContainer > div{
+    width: 100%;
+}
+.lineContainer > div p{
+    font-size: 13px;
+    font-family: "Inter", sans-serif;
+    font-weight: 400;
+    margin: 0 0 3px;
+}
+.lineRange{
+    background-color: #E0E1E6;
+    width: 82%;
+    border-radius: 5px;
+    height: 10px;
+    display: flex;
+    flex-direction: row;
+}
+.lineReview{
+    background-color: #FD5056;
+    height: 10px;
+    border-radius: 5px;
+}
+
+.lineSpan{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 13px;
+    font-family: "Inter", sans-serif;
+    font-weight: 400;
+}
