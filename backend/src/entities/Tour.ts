@@ -7,12 +7,12 @@ import Type from './Type'
 export default class Tour {
     @PrimaryGeneratedColumn()
     id!: number;
-    
-    @Column()
-    tour?: string;
 
     @Column()
     image!: string;
+    
+    @Column()
+    name?: string;
 
     @ManyToOne(() => City, (city) => city.tours)
     @JoinColumn({name: 'cityId'})

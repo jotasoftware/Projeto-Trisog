@@ -1,6 +1,5 @@
 import { App } from './app';
 import dataSource from './database/database'
-// import TestModel from './models/teste';
 
 new App().server.listen(3000)
 

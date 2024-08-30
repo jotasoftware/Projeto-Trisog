@@ -2,7 +2,7 @@ import {Entity, PrimaryGeneratedColumn, Column, OneToMany} from 'typeorm'
 import Tour from './Tour'
 
 @Entity('types')
-class Type {
+export default class Type {
     @PrimaryGeneratedColumn()
     id!: number
     
@@ -12,4 +12,3 @@ class Type {
     @OneToMany(() => Tour, (tour) => tour.type)
     tours!: Tour[]
 }
-export default Type;

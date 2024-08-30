@@ -1,15 +1,22 @@
 import { Request, Response } from 'express'
 import City from '../entities/City';
 import dataSource from '../database/database';
+import Country from '../entities/Country';
 
 export const createCity = async (req: Request, res: Response) => {
     try{
         const {
             name,
-            country
+            countryId
         } = req.body;
         
         const cityRepository = dataSource.getRepository(City)
+        const countryRepository = dataSource.getRepository(Country)
+        const country = await countryRepository.findOneBy({id: countryId})
+
+        if(!country){
+            return res.status(400).json({error: 'Country not found'})
+        }
 
         const _city = new City();
         _city.name = name;
@@ -25,8 +32,10 @@ export const createCity = async (req: Request, res: Response) => {
 export const getAllCities = async (req: Request, res: Response) => {
     try{
         const cityRepository = dataSource.getRepository(City)
-        const citys = await cityRepository.find()
-        return res.status(201).json(citys)
+        const cities = await cityRepository.find({
+            relations: ['country']
+        })
+        return res.status(201).json(cities)
     } catch(error){
         console.error(error)
         return res.status(500).json({error: 'Failed'})

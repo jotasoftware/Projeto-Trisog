@@ -55,8 +55,9 @@ export const getAllTypesWithTours = async (req: Request, res: Response) => {
             
             typesTour.push({
                 name: types[i].name,
-                tourQuant: cheapest === Infinity ? null : tourType.length,
-                cheapest: cheapest === Infinity ? null : cheapest
+                quant: cheapest === Infinity ? null : tourType.length,
+                price: cheapest === Infinity ? null : cheapest,
+                cardType: 'types'
             })
         }
 

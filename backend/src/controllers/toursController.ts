@@ -8,7 +8,7 @@ import dataSource from '../database/database';
 export const createTour = async (req: Request, res: Response) => {
     try{
         const {
-            tour,
+            name,
             image, 
             duration, 
             minAge, 
@@ -32,7 +32,7 @@ export const createTour = async (req: Request, res: Response) => {
         }
 
         const _tour = new Tour();
-        _tour.tour = tour;
+        _tour.name = name;
         _tour.image = image;
         _tour.duration = duration;
         _tour.minAge = minAge;
@@ -56,7 +56,7 @@ export const getAllTours = async (req: Request, res: Response) => {
         const tourRepository = dataSource.getRepository(Tour)
         const reviewRepository = dataSource.getRepository(Review)
         const tours = await tourRepository.find({
-            relations: ['city', 'type']
+            relations: ['city', 'city.country', 'type']
         })
 
         const toursReviews = []
@@ -71,14 +71,16 @@ export const getAllTours = async (req: Request, res: Response) => {
                 }
                 toursReviews.push({
                     ...tours[i],
-                    reviewAverage: parseFloat((sum/reviewsTour.length).toFixed(1)),
-                    reviewQuant: reviewsTour.length
+                    review: parseFloat((sum/reviewsTour.length).toFixed(1)),
+                    quant: reviewsTour.length,
+                    cardType: 'tours'
                 })
             }else{
                 toursReviews.push({
                     ...tours[i],
-                    reviewAverage: 0,
-                    reviewQuant: 0
+                    review: 0,
+                    quant: 0,
+                    cardType: 'tours'
                 })
             }
             
@@ -91,35 +93,79 @@ export const getAllTours = async (req: Request, res: Response) => {
 }
 
 
-export const getAllTypesWithTours = async (req: Request, res: Response) => {
+export const getTourPagination = async (req: Request, res: Response) => {
     try{
-        const typeRepository = dataSource.getRepository(Type)
         const tourRepository = dataSource.getRepository(Tour)
-        const types = await typeRepository.find()
-        const typesTour = []
-        for(let i:number=0; i<types.length; i++){
-            let cheapest:number = Infinity
-            const tourType = await tourRepository.find({
-                where: {type: {id:types[i].id}}
-            })
-            if(tourType){
-                for(let j:number=0; j<tourType.length; j++){
-                    if(cheapest>tourType[j].price){
-                        cheapest = tourType[j].price;
-                    }
-                }
-            }
-            
-            typesTour.push({
-                name: types[i].name,
-                tourQuant: cheapest === Infinity ? null : tourType.length,
-                cheapest: cheapest === Infinity ? null : cheapest
-            })
+        const reviewRepository = dataSource.getRepository(Review)
+
+        const page:number = Number(req.query.page) || 1;
+        const filters = req.query.filters ? JSON.parse(req.query.filters as string) : {};
+        const limit = 9;
+        const offset = ((page*limit)-limit)
+
+        const queryBuilder = tourRepository.createQueryBuilder('tour')
+            .leftJoinAndSelect('tour.city', 'city')
+            .leftJoinAndSelect('city.country', 'country')
+            .leftJoinAndSelect('tour.type', 'type')
+            .skip(offset)
+            .take(limit)
+        
+        if(filters.search != ''){
+            queryBuilder.andWhere('tour.name LIKE :search', {search: `%${filters.search}%`})
+        }
+        if(filters.filter != 150){
+            queryBuilder.andWhere('tour.price < :filter', {filter: filters.filter})
+        }
+        if(filters.categories.length > 0){
+            queryBuilder.andWhere('type.name IN (:...categories)', {categories: filters.categories})
+        }
+        if(filters.destinations.length > 0){
+            queryBuilder.andWhere('city.name IN (:...destinations)', {destinations: filters.destinations})
         }
 
-        return res.status(201).json(typesTour)
+        const tours = await queryBuilder.getMany()
+        const countTours = await queryBuilder.getCount()
+
+        if(countTours === 0){
+            return res.status(200).json({ toursReviews: [], countTours: 0 });
+        }
+        
+        let lastPage = Math.ceil(countTours/limit)
+
+        const toursReviews = []
+        for(let i:number=0; i<tours.length; i++){
+            let sum:number = 0;
+            const reviewsTour = await reviewRepository.find({
+                where: {tourId: tours[i].id}
+            })
+            if(reviewsTour.length != 0){
+                for(let j:number=0; j<reviewsTour.length; j++){
+                    sum += reviewsTour[j].average
+                }
+                toursReviews.push({
+                    ...tours[i],
+                    review: parseFloat((sum/reviewsTour.length).toFixed(1)),
+                    quant: reviewsTour.length,
+                    cardType: 'tours'
+                })
+            }else{
+                toursReviews.push({
+                    ...tours[i],
+                    review: 0,
+                    quant: 0,
+                    cardType: 'tours'
+                })
+            }
+        }
+
+        return res.status(201).json({
+            toursReviews, countTours
+        })
+
+
     } catch(error){
         console.error(error)
         return res.status(500).json({error: 'Failed'})
     }
 }
+

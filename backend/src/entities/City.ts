@@ -1,18 +1,19 @@
-import {Entity, PrimaryGeneratedColumn, Column, OneToMany} from 'typeorm'
+import {Entity, PrimaryGeneratedColumn, Column, OneToMany, ManyToOne, JoinColumn} from 'typeorm'
 import Tour from './Tour'
+import Country from './Country'
 
 @Entity('cities')
-class City {
+export default class City {
     @PrimaryGeneratedColumn()
     id!: number
     
     @Column()
     name!: string
 
-    @Column()
-    country!: string
+    @ManyToOne(() => Country, (country) => country.cities)
+    @JoinColumn({name: 'countryId'})
+    country?: Country;
 
     @OneToMany(() => Tour, (tour) => tour.city)
     tours!: Tour[]
 }
-export default City;

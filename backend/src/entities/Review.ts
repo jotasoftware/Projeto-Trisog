@@ -1,7 +1,7 @@
 import {Entity, PrimaryGeneratedColumn, Column, OneToMany} from 'typeorm'
 
 @Entity('reviews')
-class Review {
+export default class Review {
     @PrimaryGeneratedColumn()
     id!: number
     
@@ -39,4 +39,3 @@ class Review {
     comment!: string
     
 }
-export default Review
