@@ -38,7 +38,7 @@ const Header: React.FC = () => {
                     <div className={styles.socialIcons}>
                         <a href="https://twitter.com" target="_blank">
                             <FaTwitter 
-                                size={18} 
+                                size={12} 
                                 style={{
                                     color: '#666A83',
                                     transition: 'color 0.3s'
@@ -49,7 +49,7 @@ const Header: React.FC = () => {
                         </a>
                         <a href="https://linkedin.com" target="_blank">
                             <FaLinkedin 
-                                size={18} 
+                                size={12}
                                 style={{
                                     color: '#666A83',
                                     transition: 'color 0.3s'
@@ -60,7 +60,7 @@ const Header: React.FC = () => {
                         </a>
                         <a href="https://google.com" target="_blank">
                             <FaGoogle 
-                                size={18} 
+                                size={12} 
                                 style={{
                                     color: '#666A83',
                                     transition: 'color 0.3s'
@@ -71,7 +71,7 @@ const Header: React.FC = () => {
                         </a>
                         <a href="https://pinterest.com" target="_blank">
                             <FaPinterest 
-                                size={18} 
+                                size={12}
                                 style={{
                                     color: '#666A83',
                                     transition: 'color 0.3s'

@@ -1,11 +1,12 @@
 import styles from './Footer.module.css';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { FaTwitter, FaLinkedin, FaFacebook, FaPaperPlane } from 'react-icons/fa';
 
 const Footer = () => {
     const[email, setEmail] = useState('');
+    const[success, setSuccess] = useState('');
     const[error, setError] = useState('');
-    const[borderColor, setBorderColor] = useState('#FD5056')
+    const[borderColor, setBorderColor] = useState('#FFFFFF')
 
     const regexEmail = (email: string) => {
         const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
@@ -15,14 +16,41 @@ const Footer = () => {
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const value = e.target.value
         setEmail(value)
-        if (!regexEmail(value)) {
+        if (regexEmail(value) || value=='') {
+            setBorderColor('#FFFFFF')
+            setError('')
+        } 
+    }
+    const handleBlur= (e: React.ChangeEvent<HTMLInputElement>) => {
+        const value = e.target.value
+        if (!regexEmail(value) && value!='') {
             setError('Invalid email')
             setBorderColor('#FD5056')
         } else {
-            setBorderColor('')
+            setBorderColor('#FFFFFF')
             setError('')
         }
     }
+
+    const handleButton= (e: React.MouseEvent<HTMLButtonElement>) => {
+        e.preventDefault()
+        if (regexEmail(email) && email!='') {
+            setSuccess('You have been registred')
+            setBorderColor('#00FF00')
+        } else {
+            setError('Invalid email')
+            setBorderColor('#FD5056')
+        }
+    }
+
+
+    useEffect(()=> {
+        setTimeout(() => {
+            setBorderColor('#FFFFFF');
+            setSuccess('')
+            setEmail('')
+          }, 3000)
+    }, [success])
   return (
     <footer>
         <div className={styles.colOne}>
@@ -114,11 +142,13 @@ const Footer = () => {
                             name='destination'
                             value={email}
                             onChange={handleChange}
+                            onBlur={handleBlur}
                             placeholder='Enter email...'
                         />
                     </div>
                      {error && <p id="email-error" style={{ color: 'red', fontSize: '10px'}}>{error}</p>}
-                    <button type="submit">Submit</button>
+                     {success && <p id="email-error" style={{ color: 'green', fontSize: '10px'}}>{success}</p>}
+                    <button onClick={handleButton}>Submit</button>
                 </form>
             </div>
             <p>&copy; 2023 Trisog All Right Reserved</p>

@@ -6,22 +6,40 @@ import { PiMountainsDuotone } from "react-icons/pi";
 import { useNavigate } from 'react-router-dom';
 
 interface CardsProps {
-  id?: number,
-  cardType: "types" | "tours",
-  city?: string,
-  tour?: string,
-  type?: string,
-  review?: number,
-  quant?: number,
-  price?: number,
+  id?: number;
+  image?: string;
+  cardType: "types" | "tours";
+  city?: {
+    id: number;
+    name: string;
+    country:{
+      id: number;
+      name: string;
+    };
+  };
+  tour?: {
+    id: number;
+    name: string;
+  };
+  name?: string;
+  review?: number;
+  quant?: number;
+  price?: number;
+  duration?:number;
+  minAge?: number, 
+  maxPeople?: number, 
+  dateStart?: string, 
+  time?: number,
+  overview?: string, 
+  reviewAverage?: string,
+  reviewQuant?: string
 }
 
-const CardsTours: React.FC<CardsProps> = ({cardType, city, tour, review, quant, price, type, id}) => {
+const CardsTours: React.FC<CardsProps> = ({image, time, cardType, city, review, quant, price, name, id}) => {
   const navigate = useNavigate()
   const cardClick = () =>{
     navigate('/tourdetails', {state: {id}})
   }
-
   
 
   return (
@@ -29,21 +47,21 @@ const CardsTours: React.FC<CardsProps> = ({cardType, city, tour, review, quant, 
     {cardType === "tours" ? (
       <div className='card' onClick={cardClick}>
         <div className={styles.imageContainer}>
-          <img className={styles.image} src="https://picsum.photos/80/80" alt="" />
+          <img className={styles.image} src={image} alt="" />
           <div className={styles.heartIcon}>
             <FaRegHeart />
           </div>
         </div>
         <div className={styles.container}>
-          <p className={styles.city}>{city}</p>
-          <h2>{tour}</h2>
+          <p className={styles.city}>{city?.name}, {city?.country?.name}</p>
+          <h2>{name}</h2>
           <div className={styles.reviewLine}>
             <div>
               <span><FaStar size={14} strokeWidth={1}/>{review}</span>
               <p>{quant} reviews</p>
             </div>
             <div>
-              <p><CiClock2 size={14} style={{marginBottom: '2.5px'}}/> 7 days</p>
+              <p><CiClock2 size={14} style={{marginBottom: '2.5px'}}/> {time} days</p>
             </div>
           </div>
           <div className={styles.priceLine}>
@@ -56,7 +74,7 @@ const CardsTours: React.FC<CardsProps> = ({cardType, city, tour, review, quant, 
       <div className='card'>
         <div className={styles.containerTour}>
           <PiMountainsDuotone size={24}/>
-          <h2>{type}</h2>
+          <h2>{name}</h2>
           <p>{quant} Tours+</p>
           <div className={styles.priceLine}>
             <p>From</p>

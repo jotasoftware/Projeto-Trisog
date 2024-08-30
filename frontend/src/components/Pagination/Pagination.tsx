@@ -4,204 +4,93 @@ import Cards from '../Cards/Cards'
 import styles from './Pagination.module.css'
 import { IoIosArrowForward, IoIosArrowBack } from "react-icons/io";
 import { BiSortAZ } from "react-icons/bi";
+import axios from 'axios';
 
 interface CardsProps {
-    id: number;
+    id?: number;
+    image?: string;
     cardType: "types" | "tours";
-    city: string;
-    tour: string;
+    city?: {
+      id: number;
+      name: string;
+      country:{
+        id: number;
+        name: string;
+      };
+    };
+    tour?: {
+      id: number;
+      name: string;
+    };
+    name?: string;
     review?: number;
     quant?: number;
     price?: number;
+    duration?:number;
+    minAge?: number, 
+    maxPeople?: number, 
+    dateStart?: string, 
+    time?: number,
+    overview?: string, 
+    reviewAverage?: string,
+    reviewQuant?: string
+  }
+
+interface Filters {
+    search: string;
+    filter: number;
+    categories: string [];
+    destinations: string[];
+    stars: number;
 }
 
-const Pagination = () => {
-    const [itens, setItens] = useState<CardsProps[]>([
-        {   
-            id: 1,
-            cardType: 'tours',
-            city: 'London',
-            tour: 'Buckingham Palace',
-            review: 4.8,
-            quant: 15,
-            price: 520
-        },
-        {
-            id: 2,
-            cardType: 'tours',
-            city: 'Paris',
-            tour: 'Eiffel Tower Tour',
-            review: 4.7,
-            quant: 20,
-            price: 450
-        },
-        {   
-            id: 1,
-            cardType: 'tours',
-            city: 'London',
-            tour: 'Buckingham Palace',
-            review: 4.8,
-            quant: 15,
-            price: 520
-        },
-        {
-            id: 2,
-            cardType: 'tours',
-            city: 'Paris',
-            tour: 'Eiffel Tower Tour',
-            review: 4.7,
-            quant: 20,
-            price: 450
-        },
-        {   
-            id: 1,
-            cardType: 'tours',
-            city: 'London',
-            tour: 'Buckingham Palace',
-            review: 4.8,
-            quant: 15,
-            price: 520
-        },
-        {
-            id: 2,
-            cardType: 'tours',
-            city: 'Paris',
-            tour: 'Eiffel Tower Tour',
-            review: 4.7,
-            quant: 20,
-            price: 450
-        },
-        {   
-            id: 1,
-            cardType: 'tours',
-            city: 'London',
-            tour: 'Buckingham Palace',
-            review: 4.8,
-            quant: 15,
-            price: 520
-        },
-        {
-            id: 2,
-            cardType: 'tours',
-            city: 'Paris',
-            tour: 'Eiffel Tower Tour',
-            review: 4.7,
-            quant: 20,
-            price: 450
-        },
-        {   
-            id: 1,
-            cardType: 'tours',
-            city: 'London',
-            tour: 'Buckingham Palace',
-            review: 4.8,
-            quant: 15,
-            price: 520
-        },
-        {
-            id: 2,
-            cardType: 'tours',
-            city: 'Paris',
-            tour: 'Eiffel Tower Tour',
-            review: 4.7,
-            quant: 20,
-            price: 450
-        },
-        {   
-            id: 1,
-            cardType: 'tours',
-            city: 'London',
-            tour: 'Buckingham Palace',
-            review: 4.8,
-            quant: 15,
-            price: 520
-        },
-        {
-            id: 2,
-            cardType: 'tours',
-            city: 'Paris',
-            tour: 'Eiffel Tower Tour',
-            review: 4.7,
-            quant: 20,
-            price: 450
-        },
-        {   
-            id: 1,
-            cardType: 'tours',
-            city: 'London',
-            tour: 'Buckingham Palace',
-            review: 4.8,
-            quant: 15,
-            price: 520
-        },
-        {
-            id: 2,
-            cardType: 'tours',
-            city: 'Paris',
-            tour: 'Eiffel Tower Tour',
-            review: 4.7,
-            quant: 20,
-            price: 450
-        },
-        {   
-            id: 1,
-            cardType: 'tours',
-            city: 'London',
-            tour: 'Buckingham Palace',
-            review: 4.8,
-            quant: 15,
-            price: 520
-        },
-        {
-            id: 2,
-            cardType: 'tours',
-            city: 'Paris',
-            tour: 'Eiffel Tower Tour',
-            review: 4.7,
-            quant: 20,
-            price: 450
-        }
-        
-    ]) 
+const Pagination: React.FC<{filters: Filters}> = ({filters}) => {
+    const [itens, setItens] = useState<CardsProps[]>([])
     const [itensPage, setItensPage] = useState<number>(9);
-    const [currentPage, setCurrentPage] = useState<number>(0); 
+    const [currentPage, setCurrentPage] = useState<number>(1); 
+    const [quantTours, setQuantTours] = useState<number>(0); 
     const [selectedOption, setSelectedOption] = useState<string>('title');
+    const [data, setData] = useState<CardsProps[]>([])
+    const pages = Math.ceil(quantTours / itensPage);
+    // const startIndex = currentPage * itensPage;
+    // const endIndex = startIndex + itensPage;
+    // const currentItens = itens.slice(startIndex, endIndex);
 
-    const pages = Math.ceil(itens.length / itensPage);
-    const startIndex = currentPage * itensPage;
-    const endIndex = startIndex + itensPage;
-    const currentItens = itens.slice(startIndex, endIndex);
-
-    const alfabeticCards = ()=>{
-        if(selectedOption==='title') {
-            return [...itens].sort((a:CardsProps, b:CardsProps) => {
-                if(a.tour < b.tour) return -1;
-                if(a.tour > b.tour) return 1;
-                return 0;
-            })
-        }else{
-            return [...itens].sort((a:CardsProps, b:CardsProps) => {
-                if(a.city < b.city) return -1;
-                if(a.city > b.city) return 1;
-                return 0;
-            })
-        }
-    }
-    //     const fetchData = async() =>{
-    //         const result = await fetch('https://jsonplaceholder.typicode.com/todos')
-    //             .then(response => response.json())
-    //             .then(data => data)
-    //         setItens(result)
+    // const alfabeticCards = ()=>{
+    //     if(selectedOption==='title') {
+    //         return [...itens].sort((a:CardsProps, b:CardsProps) => {
+    //             if(a.tour < b.tour) return -1;
+    //             if(a.tour > b.tour) return 1;
+    //             return 0;
+    //         })
+    //     }else{
+    //         return [...itens].sort((a:CardsProps, b:CardsProps) => {
+    //             if(a.city < b.city) return -1;
+    //             if(a.city > b.city) return 1;
+    //             return 0;
+    //         })
     //     }
+    // }
+    const fecthDataTours = async () => {
+        try {
+          const response = await axios.get(`http://localhost:3000/tourspage?page=${currentPage}&filters=${encodeURIComponent(JSON.stringify(filters))}`)
+          setData(response.data.toursReviews)
+          setQuantTours(response.data.countTours)
+        //   setLoading(false)
+        } catch (error) {
+          console.error('Error')
+        }
+      }
 
     useEffect(()=>{
         // fetchData()
-        setItens(alfabeticCards())
-    }, [selectedOption])
+        //TODO Arrumar Loading
+        fecthDataTours()
+    }, [selectedOption, currentPage, filters])
   return (
     <div>
         <div className={styles.infoLine}>
-            <p>{itens.length} Tours</p>
+            <p>{quantTours} Tours</p>
             <div>
                 <p>Sort by</p>
                 <BiSortAZ size={20}/>
@@ -211,20 +100,25 @@ const Pagination = () => {
                 </select>
             </div>
         </div>
-        <div className={styles.cardsContainer}>
-            {currentItens.map((item, index)=> (
-                <div className={styles.cardContainer}>
-                    <Cards key={index} {...item}></Cards>
-                </div>
-            ))}
-        </div>
-        <div className={styles.numbersMenu}>
-            <button onClick={()=> setCurrentPage((currentPage>0) ? currentPage-1 : 0)}><IoIosArrowBack /></button>
-            {Array.from(Array(pages), (item, index) => (
-                <button value={index} className={currentPage === index ? styles.active : ''} onClick={(e: React.MouseEvent<HTMLButtonElement>)=> setCurrentPage(Number((e.target as HTMLButtonElement).value))}>{index + 1}</button>
-            ))}
-            <button  onClick={()=> setCurrentPage((currentPage<(pages-1)) ? currentPage+1 : currentPage)}><IoIosArrowForward /></button>
-        </div>
+        {data.length !== 0 ? 
+        <>
+          <div className={styles.cardsContainer}>
+              {data.map((item, index)=> (
+                  <div className={styles.cardContainer} key={item.id}>
+                      <Cards {...item}></Cards>
+                  </div>
+              ))}
+          </div>
+          <div className={styles.numbersMenu}>
+              <button onClick={()=> setCurrentPage((currentPage>1) ? currentPage - 1 : 1)}><IoIosArrowBack /></button>
+              {Array.from(Array(pages), (item, index) => (
+                  <button value={index} key={index} className={currentPage === index + 1 ? styles.active : ''} onClick={(e: React.MouseEvent<HTMLButtonElement>)=> setCurrentPage((Number((e.target as HTMLButtonElement).value))+1)}>{index + 1}</button>
+              ))}
+              <button  onClick={()=> setCurrentPage((currentPage<(pages)) ? currentPage + 1: currentPage)}><IoIosArrowForward /></button>
+          </div>
+        </>
+        : <div className={styles.cardEmpty}>No Tours to show
+          </div>} 
     </div>
   )
 }

@@ -4,25 +4,50 @@ import Cards from '../Cards/Cards';
 import Carousel from 'react-multi-carousel';
 import Loader from '../Loader/Loader';
 import 'react-multi-carousel/lib/styles.css';
+import axios from 'axios';
 
 interface CardsProps {
   id?: number;
+  image?: string;
   cardType: "types" | "tours";
-  city?: string;
-  tour?: string;
-  type?: string;
+  city?: {
+    id: number;
+    name: string;
+    country:{
+      id: number;
+      name: string;
+    };
+  };
+  tour?: {
+    id: number;
+    name: string;
+  };
+  name?: string;
   review?: number;
   quant?: number;
   price?: number;
+  duration?:number;
+  minAge?: number, 
+  maxPeople?: number, 
+  dateStart?: string, 
+  time?: number,
+  overview?: string, 
+  reviewAverage?: string,
+  reviewQuant?: string
 }
 
 const CarouselCards: React.FC<CardsProps> = ({cardType}) => {
   const slidesToSlide= cardType === "types" ? 6 : 4
   const itemClass = cardType === "types" ? styles.typesItem : styles.toursItem
   const [loading, setLoading] = useState<boolean>(true)
+  const [data, setData] = useState<CardsProps[]>([])
 
   useEffect(() => {
-    setTimeout(() => setLoading(false), 1000)
+    if(cardType === 'tours'){
+      fecthDataTours();
+    }else{
+      fecthDataTypes();
+    }
   }, [])
 
   const responsive = {
@@ -39,24 +64,24 @@ const CarouselCards: React.FC<CardsProps> = ({cardType}) => {
       items: 1
     }
   }
-  let cardProps: CardsProps
-  if(cardType === 'tours'){
-    cardProps = {
-      id: 1,
-      cardType: cardType,
-      city: 'London',
-      tour: 'Buckinham Pallace',
-      review: 4.8,
-      quant: 15,
-      price: 520
+  
+  const fecthDataTours = async () => {
+    try {
+      const response = await axios.get('http://localhost:3000/tours')
+      setData(response.data)
+      setLoading(false)
+    } catch (error) {
+      console.error('Error')
     }
-  }else{
-    cardProps = {
-      id: 2,
-      cardType: cardType,
-      type: 'Adventure',
-      quant: 15,
-      price: 520
+  }
+
+  const fecthDataTypes = async () => {
+    try {
+      const response = await axios.get('http://localhost:3000/typestour')
+      setData(response.data)
+      setLoading(false)
+    } catch (error) {
+      console.error('Error')
     }
   }
 
@@ -80,17 +105,9 @@ const CarouselCards: React.FC<CardsProps> = ({cardType}) => {
           itemClass={itemClass}
           slidesToSlide={slidesToSlide}
         >
-          <Cards {...cardProps}></Cards>
-          <Cards {...cardProps}></Cards>
-          <Cards {...cardProps}></Cards>
-          <Cards {...cardProps}></Cards>
-          <Cards {...cardProps}></Cards>
-          <Cards {...cardProps}></Cards>
-          <Cards {...cardProps}></Cards>
-          <Cards {...cardProps}></Cards>
-          <Cards {...cardProps}></Cards>
-          <Cards {...cardProps}></Cards>
-          <Cards {...cardProps}></Cards>
+          {data.map((item, index) => (
+            <Cards key={index} {...item}></Cards>
+          ))}
         </Carousel>
       </div>
     }

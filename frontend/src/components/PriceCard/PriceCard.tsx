@@ -124,7 +124,7 @@ const PriceCard: React.FC <PriceCard> = ({price, days}) => {
         </div>
         <div className={styles.totalLine}>
             <p>Total</p>
-            <span>${totalPrice}</span>
+            <span>${totalPrice.toLocaleString('de-DE')}</span>
         </div>
         <button>Book now</button>
     </aside>

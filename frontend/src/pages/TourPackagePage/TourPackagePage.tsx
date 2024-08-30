@@ -4,26 +4,94 @@ import { CiSearch } from "react-icons/ci";
 import SearchForm from '../../components/SearchForm/SearchForm'
 import Pagination from '../../components/Pagination/Pagination';
 import { Link } from 'react-router-dom'
+import axios from 'axios';
 
+type City = {
+    id: number;
+    name: string
+}
 type Destinations = {
-    [key: string]: string[];
+    id: number
+    name: string;
+    cities: City[]
+}
+type Category = {
+    id: number;
+    name: string;
+}
+
+type Filters = {
+    search: string;
+    filter: number;
+    categories: string [];
+    destinations: string[];
+    stars: number;
 }
 
 const TourPackagePage = () => {
     const [search, setSearch] = useState<string>('')
     const [filter, setFilter] = useState<number>(150)
-    const [allCategories, setAllCategories] = useState<string[]>([])
-    const [categories, setCategories] = useState<(string)[]>([])
-    const [allDestinations, setAllDestinations] = useState<Destinations>({})
+    const [allCategories, setAllCategories] = useState<Category[]>([])
+    const [categories, setCategories] = useState<string[]>([])
+    const [allDestinations, setAllDestinations] = useState<Destinations[]>([])
     const [destinations, setDestinations] = useState<string[]>([])
-    const [stars, setStars] = useState<string[]>([])
+    const [stars, setStars] = useState<number>(0)
+
+    const [allFilters, setAllFilters] = useState<Filters>({
+        search: '',
+        filter: 1000,
+        categories: [],
+        destinations: [],
+        stars: 0,
+    })
 
     useEffect(() => {
-        //TODO puxar categorias da API
-        setAllCategories(['Aventuries', 'Aventurie2s', 'Ave3nturies', 'Adventureeee', 'Aventur4ies', 'Aven5turies'])
-        setAllDestinations({brasil: ['sao paulo', 'rio de janeiro'], franca: ['paris', 'lyon']})
+        //TODO arrumar loadings
+        fetchCategories()
+        fetchDestinations()
     }, [])
+    useEffect(() => {
+        handleAllFilters()
+    }, [categories, destinations, stars])
+    // useEffect(() => {
+    //     console.log(allFilters)
+    // }, [allFilters])
+    
 
+    const handleAllFilters = () =>{
+        setAllFilters({
+            search,
+            filter,
+            categories,
+            destinations,
+            stars
+        })
+    }
+    const fetchCategories = async () =>{
+        try {
+            const response = await axios.get('http://localhost:3000/types')
+            setAllCategories(response.data)
+            // setLoading(false)
+          } catch (error) {
+            console.error('Error')
+          }
+    }
+    const fetchDestinations = async () =>{
+        try {
+            const response = await axios.get('http://localhost:3000/countriescity')
+            setAllDestinations(response.data)
+            // setLoading(false)
+          } catch (error) {
+            console.error('Error')
+          }
+    }
+
+    const handleSearch = ()=> {
+        handleAllFilters()
+    }
+    const handleFilter = ()=> {
+        handleAllFilters()
+    }
     const handleCategory = (e: React.ChangeEvent<HTMLInputElement>)=> {
         if(e.target.checked){
             setCategories([...categories, e.target.value])
@@ -39,11 +107,7 @@ const TourPackagePage = () => {
         }
     }
     const handleStars = (e: React.ChangeEvent<HTMLInputElement>)=> {
-        if(e.target.checked){
-            setStars([...stars, e.target.value])
-        }else{
-            setStars(stars.filter((star) => star !== e.target.value))
-        }
+        setStars(Number(e.target.value))
     }
 
   return (
@@ -68,7 +132,7 @@ const TourPackagePage = () => {
                             onChange={(e:React.ChangeEvent<HTMLInputElement> ) => setSearch(e.target.value)}
                             placeholder='Type anything...'
                         />
-                        <CiSearch className={styles.searchIcon} size={24}/>
+                        <CiSearch className={styles.searchIcon} size={24} onClick={handleSearch}/>
                     </div>
                 </div>
 
@@ -86,7 +150,7 @@ const TourPackagePage = () => {
                             <p>$0.00</p>
                             <p>${filter}.00</p>
                         </div>
-                        <button>Submit</button>
+                        <button onClick={handleFilter}>Submit</button>
                     </div>
                 </div>
 
@@ -97,11 +161,11 @@ const TourPackagePage = () => {
                             <label key={index}>
                                 <input 
                                     type="checkbox"
-                                    value={category}
-                                    checked={categories.includes(category)}
+                                    value={category.name}
+                                    checked={categories.includes(category.name)}
                                     onChange={handleCategory}
                                 />
-                                {category}
+                                {category.name}
                             </label>
                         ))}
                     </div>
@@ -110,20 +174,25 @@ const TourPackagePage = () => {
                 <div className={styles.destinationsDiv}>
                     <h3>Destinations</h3>
                     <div>
-                        {Object.entries(allDestinations).map(([country, cities]) => (
-                            <div key={country}>
-                                <h4>{country}</h4>
-                                {cities.map((city: string, index: number) => (
-                                    <label key={index}>
-                                        <input 
-                                            type="checkbox"
-                                            value={city}
-                                            checked={destinations.includes(city)}
-                                            onChange={handleDestinations}
-                                        />
-                                        {city}
-                                     </label>
-                                ))}
+                        {allDestinations.map((country) => (
+                            <div key={country.id}>
+                                <h4>{country.name}</h4>
+                                {(country.cities) ? (
+                                    country.cities.map((city) => (
+                                        <label key={city.id}>
+                                            <input 
+                                                type="checkbox"
+                                                value={city.name}
+                                                checked={destinations.includes(city.name)}
+                                                onChange={handleDestinations}
+                                            />
+                                            {city.name}
+                                        </label>
+                                    ))
+                                 ) : (
+                                 <p>Sem cidades cadastradas</p>
+                                )
+                                }
                             </div>
                         ))}
                     </div>
@@ -136,8 +205,9 @@ const TourPackagePage = () => {
                             <label>
                                 <input 
                                     type="checkbox"
+                                    name='stars'
                                     value="5"
-                                    checked={stars.includes("5")}
+                                    checked={stars === 5}
                                     onChange={handleStars}
                                 />
                                 5 Stars
@@ -147,8 +217,9 @@ const TourPackagePage = () => {
                             <label>
                                 <input 
                                     type="checkbox"
+                                    name='stars'
                                     value="4"
-                                    checked={stars.includes("4")}
+                                    checked={stars === 4}
                                     onChange={handleStars}
                                 />
                                 4 Stars
@@ -159,7 +230,8 @@ const TourPackagePage = () => {
                                 <input 
                                     type="checkbox"
                                     value="3"
-                                    checked={stars.includes("3")}
+                                    name='stars'
+                                    checked={stars === 3}
                                     onChange={handleStars}
                                 />
                                 3 Stars
@@ -170,7 +242,8 @@ const TourPackagePage = () => {
                                 <input 
                                     type="checkbox"
                                     value="2"
-                                    checked={stars.includes("2")}
+                                    name='stars'
+                                    checked={stars === 2}
                                     onChange={handleStars}
                                 />
                                 2 Stars
@@ -181,7 +254,8 @@ const TourPackagePage = () => {
                                 <input 
                                     type="checkbox"
                                     value="1"
-                                    checked={stars.includes("1")}
+                                    name='stars'
+                                    checked={stars === 1}
                                     onChange={handleStars}
                                 />
                                 1 Stars
@@ -191,7 +265,7 @@ const TourPackagePage = () => {
                 </div>
             </aside>
             <section>
-                <Pagination></Pagination>
+                <Pagination filters={allFilters}></Pagination>
             </section>
         </main>
     </>

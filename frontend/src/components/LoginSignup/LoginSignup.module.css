@@ -7,8 +7,9 @@
     border-radius: 5px;
     padding: 5px;
     text-decoration: none;
-    color: #70768C;
-    font-weight: 600;
+    color: #081538;
+    font-weight: 500;
+    font-family: "Inter", sans-serif;
 }
 .login:hover{
     text-decoration: none;

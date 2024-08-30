@@ -1,19 +1,17 @@
 .infoLine{
     display: flex;
     justify-content: space-between;
-    padding-left: 20px;
     margin-bottom: 15px;
     font-family: "Inter", sans-serif;
     font-size: 14px;
     color: #676D85;
+    width: 100%;
 }
 .infoLine div{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 10px 0 20px;
-    width: 270px;
-    
+    width: 250px;
 }
 .infoLine p{
     margin: 0;
@@ -33,13 +31,13 @@
 .cardsContainer{
     display: flex;
     flex-wrap: wrap;
-    width: 880px;
-    gap: 20px;
+    width: 100%;
+    gap: 2.7%;
+    row-gap: 20px;
     justify-content: flex-start;
-    padding-left: 20px;
 }
 .cardContainer{
-    width: 270px;
+    width: 31.5%;
     min-width: 130px;
     border-radius: 0px;
     border: none;
@@ -49,8 +47,9 @@
     transform: scale(1.02);
 }
 
+
 .numbersMenu{
-    padding: 50px 0 0 20px;
+    padding: 50px 0 0 0;
     display: flex;
     justify-content: center;
     gap: 7px;
@@ -70,4 +69,16 @@
     background-color: #FD5056;
     border: .5px solid #a9afbb;
     color: white;
+}
+
+
+.cardEmpty{
+    background-color: #F7F8FA;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 30px;
+    font-family: "Inter", sans-serif;
+    font-size: 16px;
+    color: #676D85;
 }
