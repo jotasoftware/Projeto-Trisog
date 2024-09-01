@@ -45,4 +45,16 @@ export default class Tour {
 
     @Column()
     overview!: string
+
+    @Column()
+    latitude!: number
+
+    @Column()
+    longitude!: number
+
+    @Column({nullable: true, type: 'float', default: 0})
+    averageReviews?: number | 0
+
+    @Column({nullable: true, default: 0})
+    quantReviews?: number | 0
 }

@@ -18,7 +18,9 @@ export const createTour = async (req: Request, res: Response) => {
             time,
             overview, 
             cityId, 
-            typeId
+            typeId, 
+            latitude,
+            longitude
         } = req.body;
         
         const tourRepository = dataSource.getRepository(Tour)
@@ -43,6 +45,8 @@ export const createTour = async (req: Request, res: Response) => {
         _tour.overview = overview;
         _tour.city = city;
         _tour.type = type;
+        _tour.latitude = latitude;
+        _tour.longitude = longitude;
         await tourRepository.save(_tour);
         return res.status(201).json({message: 'Added'})
     } catch(error){
@@ -51,41 +55,27 @@ export const createTour = async (req: Request, res: Response) => {
     }
 }
 
-export const getAllTours = async (req: Request, res: Response) => {
+export const getBestTours = async (req: Request, res: Response) => {
     try{
         const tourRepository = dataSource.getRepository(Tour)
         const reviewRepository = dataSource.getRepository(Review)
         const tours = await tourRepository.find({
-            relations: ['city', 'city.country', 'type']
+            relations: ['city', 'city.country', 'type'],
+            order: {
+                averageReviews:'DESC'
+            },
+            take: 8
         })
 
-        const toursReviews = []
+        const toursType = []
         for(let i:number=0; i<tours.length; i++){
-            let sum:number = 0;
-            const reviewsTour = await reviewRepository.find({
-                where: {tourId: tours[i].id}
+            toursType.push({
+                ...tours[i],
+                cardType: 'tours'
             })
-            if(reviewsTour.length != 0){
-                for(let j:number=0; j<reviewsTour.length; j++){
-                    sum += reviewsTour[j].average
-                }
-                toursReviews.push({
-                    ...tours[i],
-                    review: parseFloat((sum/reviewsTour.length).toFixed(1)),
-                    quant: reviewsTour.length,
-                    cardType: 'tours'
-                })
-            }else{
-                toursReviews.push({
-                    ...tours[i],
-                    review: 0,
-                    quant: 0,
-                    cardType: 'tours'
-                })
-            }
-            
         }
-        return res.status(201).json(toursReviews)
+
+        return res.status(201).json(toursType)
     } catch(error){
         console.error(error)
         return res.status(500).json({error: 'Failed'})
@@ -96,8 +86,7 @@ export const getAllTours = async (req: Request, res: Response) => {
 export const getTourPagination = async (req: Request, res: Response) => {
     try{
         const tourRepository = dataSource.getRepository(Tour)
-        const reviewRepository = dataSource.getRepository(Review)
-
+        
         const page:number = Number(req.query.page) || 1;
         const filters = req.query.filters ? JSON.parse(req.query.filters as string) : {};
         const limit = 9;
@@ -107,6 +96,7 @@ export const getTourPagination = async (req: Request, res: Response) => {
             .leftJoinAndSelect('tour.city', 'city')
             .leftJoinAndSelect('city.country', 'country')
             .leftJoinAndSelect('tour.type', 'type')
+            .orderBy(`tour.${(req.query.sortby)}`, 'ASC')
             .skip(offset)
             .take(limit)
         
@@ -122,44 +112,28 @@ export const getTourPagination = async (req: Request, res: Response) => {
         if(filters.destinations.length > 0){
             queryBuilder.andWhere('city.name IN (:...destinations)', {destinations: filters.destinations})
         }
+        if(filters.stars.length != 0){
+            queryBuilder.andWhere('tour.averageReviews >= :stars', {stars: filters.stars})
+        }
 
         const tours = await queryBuilder.getMany()
         const countTours = await queryBuilder.getCount()
-
+        const toursType = []
         if(countTours === 0){
-            return res.status(200).json({ toursReviews: [], countTours: 0 });
+            return res.status(200).json({ toursType: [], countTours: 0 });
         }
         
         let lastPage = Math.ceil(countTours/limit)
 
-        const toursReviews = []
         for(let i:number=0; i<tours.length; i++){
-            let sum:number = 0;
-            const reviewsTour = await reviewRepository.find({
-                where: {tourId: tours[i].id}
+            toursType.push({
+                ...tours[i],
+                cardType: 'tours'
             })
-            if(reviewsTour.length != 0){
-                for(let j:number=0; j<reviewsTour.length; j++){
-                    sum += reviewsTour[j].average
-                }
-                toursReviews.push({
-                    ...tours[i],
-                    review: parseFloat((sum/reviewsTour.length).toFixed(1)),
-                    quant: reviewsTour.length,
-                    cardType: 'tours'
-                })
-            }else{
-                toursReviews.push({
-                    ...tours[i],
-                    review: 0,
-                    quant: 0,
-                    cardType: 'tours'
-                })
-            }
         }
 
         return res.status(201).json({
-            toursReviews, countTours
+            toursType, countTours
         })
 
 
@@ -168,4 +142,20 @@ export const getTourPagination = async (req: Request, res: Response) => {
         return res.status(500).json({error: 'Failed'})
     }
 }
+
+export const getTourId = async (req: Request, res: Response) => {
+    try{
+        const tourRepository = dataSource.getRepository(Tour)
+        const tour = await tourRepository.findOne({
+            relations: ['city', 'city.country', 'type'],
+            where: {id: Number(req.query.id)}
+        })
+        
+        return res.status(201).json(tour)
+    } catch(error){
+        console.error(error)
+        return res.status(500).json({error: 'Failed'})
+    }
+}
+
 

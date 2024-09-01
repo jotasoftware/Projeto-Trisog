@@ -1,4 +1,4 @@
-import {Entity, PrimaryGeneratedColumn, Column, OneToMany} from 'typeorm'
+import {Entity, PrimaryGeneratedColumn, Column, OneToMany, CreateDateColumn} from 'typeorm'
 
 @Entity('reviews')
 export default class Review {
@@ -15,7 +15,7 @@ export default class Review {
     prices!: number
 
     @Column()
-    location!: number
+    locations!: number
 
     @Column()
     food!: number
@@ -38,4 +38,6 @@ export default class Review {
     @Column()
     comment!: string
     
+    @CreateDateColumn({ type: 'datetime' })
+    createdAt!: Date;
 }
