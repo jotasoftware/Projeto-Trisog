@@ -22,7 +22,6 @@ interface CardsProps {
     name: string;
   };
   name?: string;
-  review?: number;
   quant?: number;
   price?: number;
   duration?:number;
@@ -31,11 +30,11 @@ interface CardsProps {
   dateStart?: string, 
   time?: number,
   overview?: string, 
-  reviewAverage?: string,
-  reviewQuant?: string
+  averageReviews?: number,
+  quantReviews?: number
 }
 
-const CardsTours: React.FC<CardsProps> = ({image, time, cardType, city, review, quant, price, name, id}) => {
+const CardsTours: React.FC<CardsProps> = ({image, time, cardType, city, averageReviews, quant, price, name, id, quantReviews}) => {
   const navigate = useNavigate()
   const cardClick = () =>{
     navigate('/tourdetails', {state: {id}})
@@ -57,8 +56,8 @@ const CardsTours: React.FC<CardsProps> = ({image, time, cardType, city, review, 
           <h2>{name}</h2>
           <div className={styles.reviewLine}>
             <div>
-              <span><FaStar size={14} strokeWidth={1}/>{review}</span>
-              <p>{quant} reviews</p>
+              <span><FaStar size={14} strokeWidth={1}/>{averageReviews}</span>
+              <p>{quantReviews} reviews</p>
             </div>
             <div>
               <p><CiClock2 size={14} style={{marginBottom: '2.5px'}}/> {time} days</p>

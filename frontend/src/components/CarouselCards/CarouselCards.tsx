@@ -100,7 +100,7 @@ const CarouselCards: React.FC<CardsProps> = ({cardType}) => {
           customTransition="transform 0.5s ease-in-out"
           transitionDuration={500}
           containerClass={styles.carouselContainer}
-          removeArrowOnDeviceType={["tablet", "mobile"]}
+          removeArrowOnDeviceType={["tablet", "mobile", "desktop"]}
           dotListClass={styles.dotListStyle}
           itemClass={itemClass}
           slidesToSlide={slidesToSlide}

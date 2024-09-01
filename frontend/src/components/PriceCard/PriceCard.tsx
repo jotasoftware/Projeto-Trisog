@@ -60,7 +60,7 @@ const PriceCard: React.FC <PriceCard> = ({price, days}) => {
     useEffect(()=> {
         createDays()
         setTotalPrice((adults+children+kids) * price);
-    }, [adults, children, kids])
+    }, [adults, children, kids, price])
 
   return (
     <aside className={styles.container}>

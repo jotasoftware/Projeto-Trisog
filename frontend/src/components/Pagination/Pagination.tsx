@@ -28,13 +28,14 @@ interface CardsProps {
     price?: number;
     duration?:number;
     minAge?: number, 
+    location?: [];
     maxPeople?: number, 
     dateStart?: string, 
     time?: number,
     overview?: string, 
-    reviewAverage?: string,
-    reviewQuant?: string
-  }
+    averageReviews?: number,
+    quantReviews?: number
+}
 
 interface Filters {
     search: string;
@@ -49,7 +50,7 @@ const Pagination: React.FC<{filters: Filters}> = ({filters}) => {
     const [itensPage, setItensPage] = useState<number>(9);
     const [currentPage, setCurrentPage] = useState<number>(1); 
     const [quantTours, setQuantTours] = useState<number>(0); 
-    const [selectedOption, setSelectedOption] = useState<string>('title');
+    const [selectedOption, setSelectedOption] = useState<string>('name');
     const [data, setData] = useState<CardsProps[]>([])
     const pages = Math.ceil(quantTours / itensPage);
     // const startIndex = currentPage * itensPage;
@@ -73,8 +74,8 @@ const Pagination: React.FC<{filters: Filters}> = ({filters}) => {
     // }
     const fecthDataTours = async () => {
         try {
-          const response = await axios.get(`http://localhost:3000/tourspage?page=${currentPage}&filters=${encodeURIComponent(JSON.stringify(filters))}`)
-          setData(response.data.toursReviews)
+          const response = await axios.get(`http://localhost:3000/tourspage?page=${currentPage}&filters=${encodeURIComponent(JSON.stringify(filters))}&sortby=${selectedOption}`)
+          setData(response.data.toursType)
           setQuantTours(response.data.countTours)
         //   setLoading(false)
         } catch (error) {
@@ -86,17 +87,17 @@ const Pagination: React.FC<{filters: Filters}> = ({filters}) => {
         // fetchData()
         //TODO Arrumar Loading
         fecthDataTours()
-    }, [selectedOption, currentPage, filters])
+    }, [selectedOption, currentPage, filters, selectedOption])
   return (
     <div>
         <div className={styles.infoLine}>
-            <p>{quantTours} Tours</p>
+            <p>{quantTours} Tour{quantTours >1 ? 's' : ''}</p>
             <div>
                 <p>Sort by</p>
                 <BiSortAZ size={20}/>
                 <select name="" id="" value={selectedOption} onChange={(e: React.ChangeEvent<HTMLSelectElement>)=> {setSelectedOption(e.target.value)}}>
-                    <option value="title">Title</option>
-                    <option value="city">City</option>
+                    <option value="name">Title</option>
+                    <option value="price">Price</option>
                 </select>
             </div>
         </div>
@@ -110,11 +111,11 @@ const Pagination: React.FC<{filters: Filters}> = ({filters}) => {
               ))}
           </div>
           <div className={styles.numbersMenu}>
-              <button onClick={()=> setCurrentPage((currentPage>1) ? currentPage - 1 : 1)}><IoIosArrowBack /></button>
+              <button onClick={()=> setCurrentPage((currentPage>1) ? currentPage - 1 : 1)} style={pages == 1 ? {display: 'none'} : {}}><IoIosArrowBack /></button>
               {Array.from(Array(pages), (item, index) => (
                   <button value={index} key={index} className={currentPage === index + 1 ? styles.active : ''} onClick={(e: React.MouseEvent<HTMLButtonElement>)=> setCurrentPage((Number((e.target as HTMLButtonElement).value))+1)}>{index + 1}</button>
               ))}
-              <button  onClick={()=> setCurrentPage((currentPage<(pages)) ? currentPage + 1: currentPage)}><IoIosArrowForward /></button>
+              <button  onClick={()=> setCurrentPage((currentPage<(pages)) ? currentPage + 1: currentPage)} style={pages == 1 ? {display: 'none'} : {}}><IoIosArrowForward /></button>
           </div>
         </>
         : <div className={styles.cardEmpty}>No Tours to show

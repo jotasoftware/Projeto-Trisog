@@ -4,8 +4,6 @@ import { FaGoogle, FaFacebook, FaArrowLeft } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
 
 const LoginPage = () => {
-    //TODO pegar logo no S3
-    //TODO seta de voltar
   return (
     <div className={styles.page}>
         <Link to='/' className={styles.backPage}><FaArrowLeft size={24}></FaArrowLeft></Link>

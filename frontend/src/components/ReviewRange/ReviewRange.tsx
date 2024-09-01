@@ -2,11 +2,11 @@ import React from 'react'
 import styles from './ReviewRange.module.css'
 
 interface ReviewRangeProps{
-  name: string
-  review: number
+  name?: string
+  review?: number
 }
 
-const ReviewRange: React.FC<ReviewRangeProps> = ({name, review}) => {
+const ReviewRange: React.FC<ReviewRangeProps> = ({name, review = 0}) => {
   return (
     <div className={styles.lineContainer}>
       <div>
@@ -15,7 +15,7 @@ const ReviewRange: React.FC<ReviewRangeProps> = ({name, review}) => {
           <div className={styles.lineRange}>
             <div className={styles.lineReview} style={{width: `${review * 20}%`}}></div>
           </div>
-          <span>{review}</span>
+          <span>{isNaN(review) ? 0 : review}</span>
         </div>
       </div>
     </div>

@@ -1,0 +1,54 @@
+.reviewCard{
+    display: flex;
+    border: 1px solid #cfcfcfa6;
+    justify-content: flex-start;
+    gap: 2%;
+    padding: 20px;
+    font-family: "Inter", sans-serif;
+    margin-bottom: 15px;
+}
+
+.imageContainerReview{
+    width: 16%;
+    display: flex;
+    justify-content: center;
+    color: #8D92A5;
+}
+.imageContainerReview img{
+    height: fit-content;
+}
+
+.detailsContainerReview{
+    width: 100%;
+    color: #8D92A5;
+}
+.detailsContainerReview .date{
+    margin: 0;
+    font-size: 12px;
+}
+.detailsContainerReview .name{
+    margin: 5px 0;
+    color: #081538;
+    font-family: "Work Sans", sans-serif;
+    font-weight: 700;
+    font-size: 18px;
+}
+.detailsContainerReview span{
+    width: 42px;
+    display: flex;
+    background-color: #FD5056;
+    color: white;
+    border-radius: 5px;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2px;
+    padding: 2px 5px;
+    font-size: 12px;
+    margin-bottom: 12px;
+}
+.detailsContainerReview .comment{
+    font-size: 14px;
+    margin: 0;
+}
+
+

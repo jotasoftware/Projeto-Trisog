@@ -107,7 +107,11 @@ const TourPackagePage = () => {
         }
     }
     const handleStars = (e: React.ChangeEvent<HTMLInputElement>)=> {
-        setStars(Number(e.target.value))
+        if(Number(e.target.value) !== stars){
+            setStars(Number(e.target.value))
+        }else{
+            setStars(0)
+        }
     }
 
   return (
@@ -222,7 +226,7 @@ const TourPackagePage = () => {
                                     checked={stars === 4}
                                     onChange={handleStars}
                                 />
-                                4 Stars
+                                4 Stars & up
                             </label>
                         </div>
                         <div>
@@ -234,7 +238,7 @@ const TourPackagePage = () => {
                                     checked={stars === 3}
                                     onChange={handleStars}
                                 />
-                                3 Stars
+                                3 Stars & up
                             </label>
                         </div>
                         <div>
@@ -246,7 +250,7 @@ const TourPackagePage = () => {
                                     checked={stars === 2}
                                     onChange={handleStars}
                                 />
-                                2 Stars
+                                2 Stars & up
                             </label>
                         </div>
                         <div>
@@ -258,7 +262,7 @@ const TourPackagePage = () => {
                                     checked={stars === 1}
                                     onChange={handleStars}
                                 />
-                                1 Stars
+                                1 Star & up
                             </label>
                         </div>
                     </div>

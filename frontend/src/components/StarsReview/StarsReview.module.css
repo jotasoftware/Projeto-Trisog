@@ -1,0 +1,12 @@
+.review{
+    display: flex;
+    flex-direction: column;
+}
+
+input[type=radio]{
+    display: none;
+}
+.star{
+    cursor: pointer;
+    margin-right: 2px;
+}

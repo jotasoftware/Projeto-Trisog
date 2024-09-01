@@ -1,0 +1,77 @@
+.addReviewContainer{
+    display: flex;
+    flex-direction: column;
+
+}
+.addReviewContainer p{
+    font-size: 14px;
+    font-family: "Inter", sans-serif;
+    font-weight: 400;
+    color: #081538;
+    margin: 0 0 3px;
+}
+
+.starsReview{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    row-gap: 15px;
+}
+
+.formReview{
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.formReview > div{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+.formReview > div > div{
+    width: 49%;
+    display: flex;
+    flex-direction: column;
+}
+.formReview input{
+    min-width: 200px;
+    width: 100%;
+    padding: 9px;
+    border: none;
+    border-radius: 7px;
+    outline: none;
+}
+.formReview textarea{
+    resize: none;
+    padding: 9px;
+    border: none;
+    border-radius: 7px;
+    outline: none;
+}
+.formReview input:focus{
+    outline: 1px #cfcfcfa6 solid;
+}
+.formReview textarea:focus{
+    outline: 1px #cfcfcfa6 solid;
+}
+
+.formReview > button{
+    width: 30%;
+    font-size: 14px;
+    font-family: "Inter", sans-serif;
+    height:45px;
+    background-color: #FD5056;
+    color: white;
+    cursor: pointer;
+    border: none;
+    border-radius: 7px;
+    transition: .3s linear background;
+}
+.formReview button:focus{
+    outline: none;
+    box-shadow: none;
+}
+.formReview button:hover{
+    background-color: rgb(255, 127, 131);
+}
