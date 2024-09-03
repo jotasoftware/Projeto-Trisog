@@ -38,7 +38,7 @@ export default class Tour {
     price!: number
 
     @Column()
-    dateStart!: Date
+    dateStart!: string
 
     @Column()
     time!: number

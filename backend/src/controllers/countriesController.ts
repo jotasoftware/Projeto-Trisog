@@ -28,8 +28,23 @@ export const createCountry = async (req: Request, res: Response) => {
 export const getAllCountries = async (req: Request, res: Response) => {
     try{
         const countryRepository = dataSource.getRepository(Country)
-        const cities = await countryRepository.find()
-        return res.status(201).json(cities)
+        const countries = await countryRepository.find()
+        return res.status(201).json(countries)
+    } catch(error){
+        console.error(error)
+        return res.status(500).json({error: 'Failed'})
+    }
+}
+export const getBestCountries = async (req: Request, res: Response) => {
+    try{
+        const countryRepository = dataSource.getRepository(Country)
+        const countries = await countryRepository.find({
+            order: {
+                travelers: 'DESC'
+            }
+        })
+        const bestCountries = countries.slice(0, 6)
+        return res.status(201).json(bestCountries)
     } catch(error){
         console.error(error)
         return res.status(500).json({error: 'Failed'})

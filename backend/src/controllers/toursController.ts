@@ -99,7 +99,7 @@ export const getTourPagination = async (req: Request, res: Response) => {
             .orderBy(`tour.${(req.query.sortby)}`, 'ASC')
             .skip(offset)
             .take(limit)
-        
+            
         if(filters.search != ''){
             queryBuilder.andWhere('tour.name LIKE :search', {search: `%${filters.search}%`})
         }
@@ -114,6 +114,9 @@ export const getTourPagination = async (req: Request, res: Response) => {
         }
         if(filters.stars.length != 0){
             queryBuilder.andWhere('tour.averageReviews >= :stars', {stars: filters.stars})
+        }
+        if (filters.date != '') {
+            queryBuilder.andWhere('DATE(tour.dateStart) >= :date', { date: filters.date })
         }
 
         const tours = await queryBuilder.getMany()

@@ -1,7 +1,7 @@
 import {Router, Request, Response} from 'express';
 import { createTour, getBestTours, getTourId, getTourPagination } from './controllers/toursController'
 import { createCity, getAllCities } from './controllers/citiesController'
-import { createCountry, getAllCountries, getCountryCities } from './controllers/countriesController'
+import { createCountry, getAllCountries, getBestCountries, getCountryCities } from './controllers/countriesController'
 import { createType, getAllTypes, getAllTypesWithTours } from './controllers/typesController'
 import { createReview, getAllReviews, getAveragesReviews, getTourReviews, setReviewTour } from './controllers/reviewsController';
 
@@ -18,6 +18,7 @@ router.get('/cities', getAllCities)
 
 router.post('/countries', createCountry)
 router.get('/countries', getAllCountries)
+router.get('/countriesBest', getBestCountries)
 router.get('/countriesCity', getCountryCities)
 
 router.post('/types', createType)
@@ -29,44 +30,5 @@ router.get('/reviews', getAllReviews)
 router.get('/reviewstour', getTourReviews)
 router.get('/reviewsaverages', getAveragesReviews)
 
-
-
-
-router.get('/cities', (req: Request, res: Response) => {
-    res.json(
-        {
-            message: 'bom dia'
-        }
-    )
-})
-router.get('/popularstours', (req: Request, res: Response) => {
-    res.json(
-        {
-            message: 'bom dia'
-        }
-    )
-})
-router.get('/types', (req: Request, res: Response) => {
-    res.json(
-        {
-            message: 'bom dia'
-        }
-    )
-})
-router.get('/tours', (req: Request, res: Response) => {
-    res.json(
-        {
-            message: 'bom dia'
-        }
-    )
-})
-
-router.post('/setreview', (req: Request, res: Response) => {
-    res.json(
-        {
-            message: 'bom dia'
-        }
-    )
-})
 
 export {router}
