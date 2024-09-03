@@ -1,7 +1,7 @@
 import {Router, Request, Response} from 'express';
-import { createTour, getBestTours, getTourId, getTourPagination } from './controllers/toursController'
+import { createTour, DeleteTourId, getBestTours, getTourId, getTourPagination } from './controllers/toursController'
 import { createCity, getAllCities } from './controllers/citiesController'
-import { createCountry, getAllCountries, getBestCountries, getCountryCities } from './controllers/countriesController'
+import { createCountry, deleteCountry, getAllCountries, getBestCountries, getCountryCities } from './controllers/countriesController'
 import { createType, getAllTypes, getAllTypesWithTours } from './controllers/typesController'
 import { createReview, getAllReviews, getAveragesReviews, getTourReviews, setReviewTour } from './controllers/reviewsController';
 
@@ -10,6 +10,7 @@ const router: Router = Router()
 
 router.post('/tours', createTour)
 router.get('/tours', getBestTours)
+router.delete('/tours/:id', DeleteTourId)
 router.get('/tourspage', getTourPagination)
 router.get('/toursid', getTourId)
 
@@ -18,6 +19,7 @@ router.get('/cities', getAllCities)
 
 router.post('/countries', createCountry)
 router.get('/countries', getAllCountries)
+router.delete('/countries/:id', deleteCountry)
 router.get('/countriesBest', getBestCountries)
 router.get('/countriesCity', getCountryCities)
 

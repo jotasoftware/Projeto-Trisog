@@ -15,7 +15,6 @@ export const createTour = async (req: Request, res: Response) => {
             maxPeople, 
             price, 
             dateStart, 
-            time,
             overview, 
             cityId, 
             typeId, 
@@ -41,7 +40,6 @@ export const createTour = async (req: Request, res: Response) => {
         _tour.maxPeople = maxPeople;
         _tour.price = price;
         _tour.dateStart = dateStart;
-        _tour.time = time;
         _tour.overview = overview;
         _tour.city = city;
         _tour.type = type;
@@ -153,6 +151,25 @@ export const getTourId = async (req: Request, res: Response) => {
             relations: ['city', 'city.country', 'type'],
             where: {id: Number(req.query.id)}
         })
+        
+        return res.status(201).json(tour)
+    } catch(error){
+        console.error(error)
+        return res.status(500).json({error: 'Failed'})
+    }
+}
+
+export const DeleteTourId = async (req: Request, res: Response) => {
+    try{
+        const { id } = req.params
+        const tourRepository = dataSource.getRepository(Tour)
+        const tour = await tourRepository.findOneBy({ id: parseInt(id) })
+
+        if (!tour) {
+            return res.status(404).json({ error: 'Tour not found' })
+        }   
+        await tourRepository.remove(tour)
+
         
         return res.status(201).json(tour)
     } catch(error){

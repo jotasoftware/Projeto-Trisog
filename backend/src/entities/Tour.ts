@@ -41,9 +41,6 @@ export default class Tour {
     dateStart!: string
 
     @Column()
-    time!: number
-
-    @Column()
     overview!: string
 
     @Column()
