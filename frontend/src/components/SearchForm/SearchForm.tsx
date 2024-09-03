@@ -1,26 +1,49 @@
-import {useState} from 'react';
-import { FaPaperPlane } from 'react-icons/fa';
+import {useEffect, useState} from 'react';
+import { FaRegPaperPlane  } from 'react-icons/fa';
 import { CiFlag1, CiCalendar } from "react-icons/ci"
 import { MdOutlinePeopleOutline } from "react-icons/md"
 
 import styles from './SearchForm.module.css'
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
-const SearchForm = () => {
 
-    const [formData, setFormData] = useState({
+type Types = {
+    id: number;
+    name: string;
+}
+type FormDataType = {
+    date?: string;
+    destination?: string;
+    guests?: string;
+    type?: string;
+}
+interface SearchProps {
+    filters?: {
+        date?: string;
+        destination?: string;
+        guests?: string;
+        type?: string;
+    }
+}
+const SearchForm: React.FC<SearchProps> = ({filters}) => {
+    const navigate = useNavigate()
+    const [allTypes, setAllTypes] = useState<Types[]>([])
+    const [formData, setFormData] = useState<FormDataType>({
         destination: '',
         type: '',
         date: '',
         guests: ''
     })
 
-    //TODO Tirar esses tipos e buscar na API
-    const types = [
-        { value: '', label: 'Activity' },
-        { value: 'type1', label: 'Type 1' },
-        { value: 'type2', label: 'Type 2' },
-        { value: 'type3', label: 'Type 3' }
-    ]
+    const fetchCategories = async () =>{
+        try {
+            const response = await axios.get('http://localhost:3000/types')
+            setAllTypes(response.data)
+          } catch (error) {
+            console.error('Error')
+          }
+    }
 
     const handleChange = (e: React.ChangeEvent<HTMLSelectElement | HTMLInputElement>) =>{
         const name = e.target.name
@@ -31,19 +54,22 @@ const SearchForm = () => {
         })
     }
 
-    const cleanData = () => {
-        setFormData({
-            destination: '',
-            type: '',
-            date: '',
-            guests: ''
-        })
-    }
-
     const handleSubmit = (e:  React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
-        cleanData()
+        navigate('/tourpackage', { state: { filters: formData } })
     }
+
+    useEffect(()=>{
+        fetchCategories()
+        if(filters?.destination) {
+            setFormData({
+                destination: filters?.destination,
+                type: filters?.type,
+                date: filters?.date,
+                guests: filters?.guests
+            })
+        }
+    }, [])
 
     
   return (
@@ -52,7 +78,7 @@ const SearchForm = () => {
             <div>
                 <label htmlFor="destination">Destination</label>
                 <div>
-                    <FaPaperPlane></FaPaperPlane>
+                    <FaRegPaperPlane />
                     <input 
                     type="text" 
                     id='destination'
@@ -72,10 +98,13 @@ const SearchForm = () => {
                     name='type'
                     value={formData.type}
                     onChange={handleChange}
-                    >
-                        {types.map((type) => (
-                            <option key={type.value} value={type.value}>
-                                {type.label}
+                    >   
+                        <option value='select'>
+                            Activity
+                        </option>
+                        {allTypes.map((type) => (
+                            <option key={type.id} value={type.name}>
+                                {type.name}
                             </option>
                         ))}
                     </select>
@@ -104,7 +133,7 @@ const SearchForm = () => {
                         name='guests'
                         value={formData.guests}
                         onChange={handleChange}
-                        aria-label='oi'
+                        placeholder='0'
                     />
                 </div>
             </div>

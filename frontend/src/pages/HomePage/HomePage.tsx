@@ -20,6 +20,7 @@ const HomePage = () => {
             <p>Find awesome hotel, tour, car and activities in London</p>
             <SearchForm />
         </section>
+
         <section className={styles.cardsSection}>
             <div className={styles.tagsContainer}>
                 <span className={styles.tagsLine}></span>
@@ -29,6 +30,7 @@ const HomePage = () => {
             <h2>Most Popular Tours</h2>
             <CarouselCards cardType="tours" />
         </section>
+
         <span className={styles.sectionLine}></span>
         <section className={styles.numbersSection}>
             <div>
@@ -44,6 +46,7 @@ const HomePage = () => {
                 <span>7k+</span><p>Positive Reviews</p>
             </div>
         </section>
+
         <section className={styles.mosaicSection}>
             <div className={styles.tagsContainer}>
                 <span className={styles.tagsLine}></span>
@@ -51,11 +54,12 @@ const HomePage = () => {
                 <span className={styles.tagsLine}></span>
             </div>
             <h2>Top Attractions Destinations</h2>
-            <ImageMosaic></ImageMosaic> 
+            <ImageMosaic type={'home'}></ImageMosaic> 
         </section>
+
         <section className={styles.whySection}>
             <div className={styles.whyImage}>
-                <img src="img2.png" alt="" />
+                <img src="https://trisogbucket.s3.amazonaws.com/home/1home.png" alt="" />
                 <button><FaRegCirclePlay />What Now</button>
             </div>
             <div className={styles.whyText}>
@@ -82,6 +86,7 @@ const HomePage = () => {
                 </div>
             </div>
         </section>
+
         <span className={styles.sectionLine}></span>
         <section className={styles.typeSection}>
             <div className={styles.tagsContainer}>
@@ -92,9 +97,10 @@ const HomePage = () => {
             <h2>Pick A Tour Type</h2>
             <CarouselCards cardType="types" />
         </section>
+
         <section className={styles.testimonialsSection}>
             <div className={styles.testimonialsImage}>
-                <img src="img3.png" alt="" />
+                <img src="https://trisogbucket.s3.amazonaws.com/home/2home.png" alt="" />
             </div>
             <div className={styles.testimonialsText}>
                 <div className={styles.tagsContainer}>
@@ -107,6 +113,7 @@ const HomePage = () => {
                 <CarouselTestimonials></CarouselTestimonials>
             </div>
         </section>
+
         <section className={styles.updatesSection}>
             <div className={styles.tagsContainer}>
                 <span className={styles.tagsLine}></span>
@@ -116,12 +123,13 @@ const HomePage = () => {
             <h2>Latest Travel Guide</h2>
             <Updates></Updates>
         </section>
+
         <section className={styles.iconsSection}>
-            <img src="1.png" alt="" />
-            <img src="2.png" alt="" />
-            <img src="3.png" alt="" />
-            <img src="4.png" alt="" />
-            <img src="5.png" alt="" />
+            <img src="https://trisogbucket.s3.amazonaws.com/mountainicons/1.png" alt="" />
+            <img src="https://trisogbucket.s3.amazonaws.com/mountainicons/2.png" alt="" />
+            <img src="https://trisogbucket.s3.amazonaws.com/mountainicons/3.png" alt="" />
+            <img src="https://trisogbucket.s3.amazonaws.com/mountainicons/4.png" alt="" />
+            <img src="https://trisogbucket.s3.amazonaws.com/mountainicons/5.png" alt="" />
         </section>
     </>
   )

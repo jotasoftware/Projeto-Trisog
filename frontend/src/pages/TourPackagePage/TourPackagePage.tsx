@@ -3,7 +3,7 @@ import styles from './TourPackagePage.module.css'
 import { CiSearch } from "react-icons/ci";
 import SearchForm from '../../components/SearchForm/SearchForm'
 import Pagination from '../../components/Pagination/Pagination';
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import axios from 'axios';
 
 type City = {
@@ -26,16 +26,22 @@ type Filters = {
     categories: string [];
     destinations: string[];
     stars: number;
+    date: string;
 }
 
 const TourPackagePage = () => {
-    const [search, setSearch] = useState<string>('')
-    const [filter, setFilter] = useState<number>(150)
-    const [allCategories, setAllCategories] = useState<Category[]>([])
-    const [categories, setCategories] = useState<string[]>([])
-    const [allDestinations, setAllDestinations] = useState<Destinations[]>([])
-    const [destinations, setDestinations] = useState<string[]>([])
-    const [stars, setStars] = useState<number>(0)
+    const location = useLocation();
+    const filters = location.state?.filters;
+    const searchInput = location.state?.search;
+    
+    const [date, setDate] = useState<string>('');
+    const [search, setSearch] = useState<string>('');
+    const [filter, setFilter] = useState<number>(150);
+    const [allCategories, setAllCategories] = useState<Category[]>([]);
+    const [categories, setCategories] = useState<string[]>([]);
+    const [allDestinations, setAllDestinations] = useState<Destinations[]>([]);
+    const [destinations, setDestinations] = useState<string[]>([]);
+    const [stars, setStars] = useState<number>(0);
 
     const [allFilters, setAllFilters] = useState<Filters>({
         search: '',
@@ -43,20 +49,32 @@ const TourPackagePage = () => {
         categories: [],
         destinations: [],
         stars: 0,
+        date: ''
     })
 
+
     useEffect(() => {
-        //TODO arrumar loadings
         fetchCategories()
         fetchDestinations()
-    }, [])
+        if(filters) {
+            setDestinations([filters.destination])
+            setDate(filters.date)
+            setCategories([filters.type])
+        }
+    }, [filters])
     useEffect(() => {
         handleAllFilters()
     }, [categories, destinations, stars])
-    // useEffect(() => {
-    //     console.log(allFilters)
-    // }, [allFilters])
-    
+
+    useEffect(()=>{
+        if(searchInput) {
+            setSearch(searchInput)
+            setAllFilters(prevFilters => ({
+                ...prevFilters,
+                search: searchInput
+            }))
+        }
+    }, [searchInput])
 
     const handleAllFilters = () =>{
         setAllFilters({
@@ -64,14 +82,14 @@ const TourPackagePage = () => {
             filter,
             categories,
             destinations,
-            stars
+            stars,
+            date
         })
     }
     const fetchCategories = async () =>{
         try {
             const response = await axios.get('http://localhost:3000/types')
             setAllCategories(response.data)
-            // setLoading(false)
           } catch (error) {
             console.error('Error')
           }
@@ -80,7 +98,6 @@ const TourPackagePage = () => {
         try {
             const response = await axios.get('http://localhost:3000/countriescity')
             setAllDestinations(response.data)
-            // setLoading(false)
           } catch (error) {
             console.error('Error')
           }
@@ -123,7 +140,7 @@ const TourPackagePage = () => {
                 <p>/</p>
                 <p className={styles.pColor}>Tour Package</p>
             </div>
-            <SearchForm />
+            <SearchForm filters={filters}/>
         </section>
         <main className={styles.mainContainer}>
             <aside>

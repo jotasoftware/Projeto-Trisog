@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react'
 import styles from './PostReview.module.css'
 import StarsReview from '../StarsReview/StarsReview';
 import axios from 'axios';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css'
 
 interface PostProps {
   onPost: () => void;
@@ -54,6 +56,7 @@ const PostReview: React.FC<PostProps> = ({onPost, tourId}) => {
     handleCleanAll()
     try {
       const response = await axios.post('http://localhost:3000/reviews', data)
+      toast.success('Your review has been recorded')
       onPost()
     } catch (error) {
       console.error('Error')
@@ -123,6 +126,7 @@ const PostReview: React.FC<PostProps> = ({onPost, tourId}) => {
 
   return (
     <div className={styles.addReviewContainer}>
+      <ToastContainer></ToastContainer>
       <div className={styles.starsReview}>
         <StarsReview name={'Services'} onRatingChange={handleServices} cleanAll={cleanAll}></StarsReview>
         <StarsReview name={'Locations'} onRatingChange={handleLocations} cleanAll={cleanAll}></StarsReview>

@@ -1,5 +1,4 @@
 .titleSection{
-    background-color: rgb(110, 110, 255);
     height: 280px;
     position: relative;
     display: flex;
@@ -7,6 +6,10 @@
     margin-bottom: 100px;
     justify-content: center;
     align-items: center;
+    background-image: url('https://trisogbucket.s3.amazonaws.com/backgrounds/tourpackage.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
 }
 .titleSection h1{
     font-family: "Work Sans", sans-serif;
@@ -95,6 +98,13 @@ aside div h3{
     border: none;
     border-radius: 5px;
     outline: none;
+}
+.searchDiv .searchIcon{
+    transition: .2s ease-in-out color;
+    cursor: pointer;
+}
+.searchDiv .searchIcon:hover{
+    color: #FD5056;
 }
 
 

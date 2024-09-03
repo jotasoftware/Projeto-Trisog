@@ -1,31 +1,30 @@
-import { useState } from 'react'
-import {BrowserRouter, Route, Routes, Link }from 'react-router-dom'
+import {BrowserRouter, Route, Routes}from 'react-router-dom'
 
 import LoginPage from './pages/LoginPage/LoginPage'
-import RegisterPage from './pages/RegisterPage/RegisterPage'
 import Layout from './pages/Layout/Layout'
 import HomePage from './pages/HomePage/HomePage'
+import ProtectedRoute from '././components/ProtectedRoute/ProtectedRoute';
 import TourPackagePage from './pages/TourPackagePage/TourPackagePage'
 import TourDetailsPage from './pages/TourDetailsPage/TourDetailsPage'
+import ErrorPage from './pages/ErrorPage/ErrorPage';
+import DestinationPage from './pages/DestinationPage/DestinationPage';
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
     <>
       <div>
         <BrowserRouter>
           <Routes>
-              <Route path='/' element={<Layout />}>
-                <Route path='/' element={<HomePage />}></Route>
-                <Route path='/tourpackage' element={<TourPackagePage />}></Route>
-                <Route path='/tourdetails' element={<TourDetailsPage />}></Route>
-              </Route>
-              <Route path='/login' element={<LoginPage />}></Route>
-              <Route path='/register' element={<RegisterPage />}></Route>
+                <Route path='/' element={<Layout />}>
+                  <Route path='/' element={<HomePage />}></Route>
+                  <Route path='*' element={<ErrorPage />}></Route>
+                  <Route path="/tourpackage" element={<ProtectedRoute element={<TourPackagePage />} />} />
+                  <Route path='/tourdetails' element={<ProtectedRoute element={<TourDetailsPage />} />}></Route>
+                  <Route path='/destination' element={<DestinationPage />}></Route>
+                </Route>
+                <Route path='/login' element={<LoginPage />}></Route>
           </Routes>
         </BrowserRouter>
-        
       </div>
     </>
   )

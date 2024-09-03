@@ -54,7 +54,9 @@ const Footer = () => {
   return (
     <footer>
         <div className={styles.colOne}>
-            <p>Logo</p>
+            <div className={styles.imgContainer}>
+                <img src="https://trisogbucket.s3.amazonaws.com/icons/trisogwhite.svg" alt="" />
+            </div>
             <div>
                 <p className={styles.cursive}>Need any help?</p>
                 <p style={{ color: 'white'}}>Call Us: <span>(888)1234 5678</span></p>
@@ -103,26 +105,26 @@ const Footer = () => {
             <div>
                 <p>Company</p>
                 <ul>
-                    <a href="#">About Us</a>
-                    <a href="#">Contact Us</a>
-                    <a href="#">Travel Guides</a>
-                    <a href="#">Data Policy</a>
+                    <a href="/aboutus">About Us</a>
+                    <a href="/contactus">Contact Us</a>
+                    <a href="/travelguides">Travel Guides</a>
+                    <a href="/datapolicy">Data Policy</a>
                 </ul>
             </div>
             <div>
                 <p>Top Destination</p>
                 <div>
                     <ul>
-                        <a href="#">Las Vegas</a>
-                        <a href="#">New York City</a>
-                        <a href="#">San Francisco</a>
-                        <a href="#">Hawaii</a>
+                        <a href="/lasvegas">Las Vegas</a>
+                        <a href="/newyork">New York City</a>
+                        <a href="/sanfrancisco">San Francisco</a>
+                        <a href="/hawaii">Hawaii</a>
                     </ul>
                     <ul>
-                        <a href="#">Tokyo</a>
-                        <a href="#">Sydney</a>
-                        <a href="#">Melbourne</a>
-                        <a href="#">Dubai</a>
+                        <a href="/tokyo">Tokyo</a>
+                        <a href="/sydnei">Sydney</a>
+                        <a href="/melbourne">Melbourne</a>
+                        <a href="/dubai">Dubai</a>
                     </ul>
                 </div>
             </div>

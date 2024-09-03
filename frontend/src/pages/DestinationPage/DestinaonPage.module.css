@@ -1,0 +1,43 @@
+.titleSection{
+    height: 280px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 150px;
+    justify-content: center;
+    align-items: center;
+    background-image: url('https://trisogbucket.s3.amazonaws.com/backgrounds/destination.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.titleSection h1{
+    font-family: "Work Sans", sans-serif;
+    font-style: normal;
+    letter-spacing: 1.5px;
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 56px;
+    padding-bottom: 0;
+    margin-bottom: 0;
+}
+.titleSection > div:nth-child(2){
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+.titleSection div .linkHome{
+    color: white;
+    font-family: "Work Sans", sans-serif;
+    font-weight: 500;
+    font-size: 14px;
+}
+.titleSection div p{
+    color: white;
+    font-family: "Work Sans", sans-serif;
+    font-weight: 500;
+    font-size: 14px;
+}
+.titleSection div .pColor{
+    color: #FD5056;
+}

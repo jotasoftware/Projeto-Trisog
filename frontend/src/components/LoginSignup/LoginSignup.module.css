@@ -1,7 +1,7 @@
 .login{
     display: flex;
     align-items: center;
-    width: 140px;
+    gap: 10px;
     justify-content: space-between;
     transition: background .2s ease-in-out;
     border-radius: 5px;

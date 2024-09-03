@@ -1,10 +1,11 @@
 import {useState} from 'react'
-import { Link, useLocation } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import styles from './Header.module.css'
 import LoginSignup from '../LoginSignup/LoginSignup'
 import { FaTwitter, FaLinkedin, FaGoogle, FaPinterest, FaSearch, FaChevronDown } from 'react-icons/fa'
 
 const Header: React.FC = () => {
+    const navigate = useNavigate()
     const [searchActive, setSearchActive] = useState(false)
     const [showInput, setShowInput] = useState(false)
     const [searchInput, setSearchInput] = useState('')
@@ -18,8 +19,7 @@ const Header: React.FC = () => {
             return;
         }else if(searchActive == true){
             if (searchInput.length > 0){
-                //TODO enviar pesquisa
-                console.log(searchInput)
+                navigate('/tourpackage', { state: { search: searchInput } })
                 setSearchInput('')
             }
             setShowInput(false)
@@ -89,29 +89,31 @@ const Header: React.FC = () => {
             </div>
             <div className={styles.secondLine}>
                 <div>
-                    <p>logo</p>
+                    <div className={styles.imgContainer}>
+                        <img src="https://trisogbucket.s3.amazonaws.com/icons/trisogblack.svg" alt="" />
+                    </div>
                     <nav>
                         <ul>
                             <li>
                                 <Link to="/" className={currentPath === '/' ? styles.active : ''}>Home</Link>
                             </li>
                             <li>
-                                <Link to="/" className={currentPath === '/about' ? styles.active : ''}>About</Link>
+                                <Link to="/about" className={currentPath === '/about' ? styles.active : ''}>About</Link>
                             </li>
                             <li>
                                 <Link to="/tourpackage" className={currentPath === '/tourpackage' ? styles.active : ''}>Tours</Link>
                             </li>
                             <li>
-                                <Link to="/" className={currentPath === '/destination' ? styles.active : ''}>Destination</Link>
+                                <Link to="/destination" className={currentPath === '/destination' ? styles.active : ''}>Destination</Link>
                             </li>
                             <li>
-                                <Link to="/" className={currentPath === '/blog' ? styles.active : ''}>Blog</Link>
+                                <Link to="/blog" className={currentPath === '/blog' ? styles.active : ''}>Blog</Link>
                             </li>
                             <li>
-                                <Link to="/" className={currentPath === '/pages' ? styles.active : ''}>Pages</Link>
+                                <Link to="/pages" className={currentPath === '/pages' ? styles.active : ''}>Pages</Link>
                             </li>
                             <li>
-                                <Link to="/" className={currentPath === '/contact' ? styles.active : ''}>Contact</Link>
+                                <Link to="/contact" className={currentPath === '/contact' ? styles.active : ''}>Contact</Link>
                             </li>
                         </ul>
                     </nav>

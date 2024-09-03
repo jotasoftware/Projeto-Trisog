@@ -64,7 +64,10 @@ header{
     padding: 0 2.5vw;
     font-weight: 400;
 }
-.secondLine div{
+.imgContainer {
+    width: 90px;
+}
+.secondLine>  div{
     display: flex;
     align-items: center;
 }
@@ -76,7 +79,7 @@ header{
     cursor: pointer;
 }
 nav{
-    margin-left: 40px;
+    margin-left: 45px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -87,7 +90,7 @@ nav ul{
     list-style: none;
     align-items: center;
     padding: 12px 0 0;
-    gap: 30px;
+    gap: 20px;
 }
 nav ul a{
     text-decoration: none;

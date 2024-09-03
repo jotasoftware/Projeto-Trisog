@@ -49,7 +49,15 @@
     outline: none;
     color: #70768C;
 }
+input::placeholder {
+    color: #676D85;
+    font-family: 'Inter';
+    font-size: 14px;
+}
 .container form div select{
+    color: #676D85;
+    font-family: 'Inter';
+    font-size: 14px;
     width: 15vw;
     height: 35px;
     border-radius: 7px;

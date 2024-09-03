@@ -5,6 +5,7 @@ import styles from './Pagination.module.css'
 import { IoIosArrowForward, IoIosArrowBack } from "react-icons/io";
 import { BiSortAZ } from "react-icons/bi";
 import axios from 'axios';
+import Loader from '../Loader/Loader';
 
 interface CardsProps {
     id?: number;
@@ -37,12 +38,13 @@ interface CardsProps {
     quantReviews?: number
 }
 
-interface Filters {
-    search: string;
-    filter: number;
-    categories: string [];
-    destinations: string[];
-    stars: number;
+type Filters = {
+  search: string;
+  filter: number;
+  categories: string [];
+  destinations: string[];
+  stars: number;
+  date: string;
 }
 
 const Pagination: React.FC<{filters: Filters}> = ({filters}) => {
@@ -53,43 +55,26 @@ const Pagination: React.FC<{filters: Filters}> = ({filters}) => {
     const [selectedOption, setSelectedOption] = useState<string>('name');
     const [data, setData] = useState<CardsProps[]>([])
     const pages = Math.ceil(quantTours / itensPage);
-    // const startIndex = currentPage * itensPage;
-    // const endIndex = startIndex + itensPage;
-    // const currentItens = itens.slice(startIndex, endIndex);
+    const [loading, setLoading] = useState<boolean>(true)
 
-    // const alfabeticCards = ()=>{
-    //     if(selectedOption==='title') {
-    //         return [...itens].sort((a:CardsProps, b:CardsProps) => {
-    //             if(a.tour < b.tour) return -1;
-    //             if(a.tour > b.tour) return 1;
-    //             return 0;
-    //         })
-    //     }else{
-    //         return [...itens].sort((a:CardsProps, b:CardsProps) => {
-    //             if(a.city < b.city) return -1;
-    //             if(a.city > b.city) return 1;
-    //             return 0;
-    //         })
-    //     }
-    // }
     const fecthDataTours = async () => {
         try {
           const response = await axios.get(`http://localhost:3000/tourspage?page=${currentPage}&filters=${encodeURIComponent(JSON.stringify(filters))}&sortby=${selectedOption}`)
           setData(response.data.toursType)
           setQuantTours(response.data.countTours)
-        //   setLoading(false)
+          setLoading(false)
         } catch (error) {
           console.error('Error')
         }
       }
 
     useEffect(()=>{
-        // fetchData()
-        //TODO Arrumar Loading
         fecthDataTours()
     }, [selectedOption, currentPage, filters, selectedOption])
   return (
     <div>
+        {loading ? (<Loader />) :
+        <>
         <div className={styles.infoLine}>
             <p>{quantTours} Tour{quantTours >1 ? 's' : ''}</p>
             <div>
@@ -119,7 +104,8 @@ const Pagination: React.FC<{filters: Filters}> = ({filters}) => {
           </div>
         </>
         : <div className={styles.cardEmpty}>No Tours to show
-          </div>} 
+          </div>}
+        </>}
     </div>
   )
 }

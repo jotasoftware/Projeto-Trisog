@@ -14,6 +14,7 @@ import axios from 'axios';
 import ReviewCard from '../../components/ReviewCard/ReviewCard'
 import PostReview from '../../components/PostReview/PostReview'
 import CarouselCards from '../../components/CarouselCards/CarouselCards'
+import Loader from '../../components/Loader/Loader'
 
 interface CardsProps {
     id?: number;
@@ -75,20 +76,16 @@ const TourDetailsPage = () => {
 
   const fecthDataTours = async () => {
     try {
-      //TODO arrumar loading
       const response = await axios.get(`http://localhost:3000/toursid?id=${id}`)
       setData(response.data)
-    //   setLoading(false)
     } catch (error) {
       console.error('Error')
     }
   }
   const fecthAverageReviews = async () => {
     try {
-      //TODO arrumar loading
       const response = await axios.get(`http://localhost:3000/reviewsaverages?id=${id}`)
       setReviews(response.data)
-    //   setLoading(false)
     } catch (error) {
       console.error('Error')
     }
@@ -126,16 +123,12 @@ const TourDetailsPage = () => {
 
 
   useEffect(()=>{
-    //TODO Arrumar Loading
     fecthDataTours()
     fecthAverageReviews()
     fetchReview()
     
   }, [post])
 
-  if (data === null) {
-    return <div>Loading...</div>;
-  }
   return (
     <div>
 
@@ -246,7 +239,7 @@ const TourDetailsPage = () => {
         
 
       ) : (
-        <div>Loading...</div>
+        <Loader />
       )}
     </div>
     <section className={styles.carouselToursSection}>

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import styles from './ImageMosaic.module.css'
 import axios from 'axios'
+import Loader from '../Loader/Loader';
 
 type Countries = {
     id: number,
@@ -9,73 +10,59 @@ type Countries = {
     travelers: string
 }
 
-const ImageMosaic = () => {
-    const [countries, setCountries] = useState<Countries[]>([])
+interface type{
+    type: string
+}
 
+const ImageMosaic: React.FC<type> = ({type}) => {
+    const [groupCountries, setGroupCountries] = useState<Countries[][]>([])
+    const [loading, setLoading] = useState<boolean>(true)
+    
     useEffect(()=>{
         fetchCountries()
-    })
+    }, [])
 
+
+    const countriesIntoGroups = (array: Countries[]): Countries[][] => {
+        const result: Countries[][] = [];
+        for (let i = 0; i < array.length; i+=6) {
+          result.push(array.slice(i, i + 6))
+        }
+        return result;
+    }
     const fetchCountries = async () => {
+        let url: string;
         try {
-            const response = await axios.get('http://localhost:3000/countries')
-            setCountries(response.data)
+            if(type == 'home') url = 'http://localhost:3000/countriesbest'
+            else url ='http://localhost:3000/countries'
+            const response = await axios.get(url)
+            setLoading(false)
+            const groupedData = countriesIntoGroups(response.data)
+            setGroupCountries(groupedData)
         } catch (error) {
             console.error('Error')
         }
     }
-    // const countries = [
-    //     {
-    //         id: 1,
-    //         image: 'https://picsum.photos/300/600',
-    //         country: 'Australia',
-    //         travelers: '187,900'
-    //     },
-    //     {
-    //         id: 2,
-    //         image: 'https://picsum.photos/300/600',
-    //         country: 'Australia',
-    //         travelers: '187,900'
-    //     },
-    //     {
-    //         id: 3,
-    //         image: 'https://picsum.photos/300/600',
-    //         country: 'Australia',
-    //         travelers: '187,900'
-    //     },
-    //     {
-    //         id: 4,
-    //         image: 'https://picsum.photos/300/600',
-    //         country: 'Australia',
-    //         travelers: '187,900'
-    //     },
-    //     {
-    //         id: 5,
-    //         image: 'https://picsum.photos/300/600',
-    //         country: 'Australia',
-    //         travelers: '187,900'
-    //     },
-    //     {
-    //         id: 6,
-    //         image: 'https://picsum.photos/300/600',
-    //         country: 'Australia',
-    //         travelers: '187,900'
-    //     }
-    // ]
 
     return (
-        <section className={styles.grid}>
-            {countries.map(country => (
-                <div key={country.id} className={styles[`img${country.id}`]}>
-                    <img src={country.image} alt="" />
-                    <div className={styles.imageShadow}></div>
-                    <div className={styles.textDescription}>
-                        <p>{country.travelers} Travelers</p>
-                        <h2>{country.name}</h2>
+        <div className={type == 'destinations' ? styles.containerDestination : ''}>
+            {loading ? <Loader /> :
+            groupCountries.map((countries, index) => (
+            <div key={index} className={`${styles.grid} ${index % 2 ==0 ? styles.right : styles.left}`}>
+                {countries.map(country => (
+                    <div key={country.id} className={styles[`img${index == 0 ? country.id : (country.id - index*6) }`]}>
+                        <img src={country.image} alt="" />
+                        <div className={styles.imageShadow}></div>
+                        <div className={styles.textDescription}>
+                            <p>{country.travelers} Travelers</p>
+                            <h2>{country.name}</h2>
+                        </div>
                     </div>
-                </div>
-            ))}
-        </section>
+                ))}
+            </div>
+            ))
+        }
+        </div>
     )
 }
 

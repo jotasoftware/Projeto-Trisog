@@ -6,6 +6,7 @@ footer{
     background-color: #111;
     color: #CFCFCF;
     font-size: 16px;
+    height: 400px;
 }
 
 .colOne{
@@ -14,6 +15,13 @@ footer{
     width: 20vw;
     margin-right: 3vw;
     gap: 15px;
+}
+.colOne p{
+    margin: 5px;
+}
+.colOne .imgContainer{
+    width: 140px;
+    margin-bottom: 15px;
 }
 .cursive{
     font-family: "Kaushan Script", cursive;
@@ -127,6 +135,7 @@ footer{
     color: white;
     font-size: 15px;
     margin-bottom: 60px;
+    margin-top: 0;
     transition: .3s linear background;
 }
 .colThree form button:hover{

@@ -3,8 +3,10 @@
     width: 100vw;
     height: 100vh;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
+    font-family: 'Inter';
 }
 
 .backPage {
@@ -25,13 +27,13 @@
     flex-direction: column;
     justify-content: center;
     background-color: white;
-    height: 500px;
     width: 30vw;
     border: #FD5056 1px solid;
     border-radius: 25px;
+    padding-top: 25px;
 }
 .container img{
-    width: 100px;
+    width: 75px;
 }
 .container header{
     display: flex;
@@ -76,6 +78,7 @@ form button{
     border: #CFCFCF 1px solid;
     color: white;
     background-color: #FD5056;
+    cursor: pointer;
     outline: none;
     border-radius: 8px;
     height: 46px;
@@ -99,6 +102,7 @@ form button:hover{
     justify-content: space-between;
     align-items: center;
     color: white;
+    cursor: pointer;
     outline: none;
     border-radius: 8px;
     height: 46px;
@@ -126,3 +130,13 @@ form button:hover{
 }
 
 
+.setType{
+    border: none;
+    background: transparent;
+    padding: 0;
+    outline: none;
+    cursor: pointer;
+}
+.setType:hover{
+    color: rgb(0, 12, 175);
+}

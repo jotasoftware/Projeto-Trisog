@@ -1,13 +1,31 @@
+.containerDestination{
+    margin-bottom: 50px;
+}
+
 .grid {
     margin-top: 30px;
     display: grid;
-    grid-template-areas:
-      "img1 img1 img2 img2 img3 img3 img4 img4"
-      "img5 img5 img5 img6 img6 img6 img4 img4";
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
     grid-template-rows: 250px 250px;
     padding: 0 10vw;
     gap: 30px;
+}
+.right{
+    grid-template-areas:
+      "img1 img1 img2 img2 img3 img3 img4 img4"
+      "img5 img5 img5 img6 img6 img6 img4 img4";
+}
+.left {
+    display: grid;
+    margin-top: 30px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: 250px 250px;
+    padding: 0 10vw;
+    gap: 30px;
+    grid-template-areas:
+      "img1 img1 img2 img2 img3 img3 img4 img4"
+      "img1 img1 img5 img5 img5 img6 img6 img6";
 }
 .grid h2 {
     font-size: 30px;

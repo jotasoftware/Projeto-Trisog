@@ -5,25 +5,25 @@ import styles from './Updates.module.css'
 const Updates = () => {
     const updates = [
         {
-          urlImage: 'https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0',
+          urlImage: 'https://trisogbucket.s3.amazonaws.com/home/1updates.jpg',
           date: 'August 22, 2024',
           admin: 'Admin',
           news: 'The impact of Covid 19 on travel and tourism'
         },
         {
-          urlImage: 'https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0',
+          urlImage: 'https://trisogbucket.s3.amazonaws.com/home/2updates.jpg',
           date: 'August 21, 2024',
           admin: 'Admin',
           news: 'New regulations in the aviation industry'
         },
         {
-          urlImage: 'https://images.unsplash.com/photo-1496307042754-b4aa456c4a2d',
+          urlImage: 'https://trisogbucket.s3.amazonaws.com/home/3updates.jpg',
           date: 'August 20, 2024',
           admin: 'Admin',
           news: 'How AI is transforming customer service'
         },
         {
-          urlImage: 'https://images.unsplash.com/photo-1496307042754-b4aa456c4a2d',
+          urlImage: 'https://trisogbucket.s3.amazonaws.com/home/4updates.jpg',
           date: 'August 19, 2024',
           admin: 'Admin',
           news: 'How AI is transforming customer service'
