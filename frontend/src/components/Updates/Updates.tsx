@@ -1,4 +1,3 @@
-import React from 'react';
 import { GoDotFill } from "react-icons/go";
 import styles from './Updates.module.css'
 

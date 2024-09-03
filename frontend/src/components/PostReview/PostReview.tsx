@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import styles from './PostReview.module.css'
 import StarsReview from '../StarsReview/StarsReview';
 import axios from 'axios';

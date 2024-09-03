@@ -239,7 +239,7 @@
 .carouselToursSection{
     margin: 35px 0 80px;
 }
-.carouselToursSection h2{
+.carouselToursSection > h2{
     text-align: center;
     font-family: "Work Sans";
     font-style: normal;

@@ -48,10 +48,11 @@ const ImageMosaic: React.FC<type> = ({type}) => {
         <div className={type == 'destinations' ? styles.containerDestination : ''}>
             {loading ? <Loader /> :
             groupCountries.map((countries, index) => (
+                
             <div key={index} className={`${styles.grid} ${index % 2 ==0 ? styles.right : styles.left}`}>
-                {countries.map(country => (
-                    <div key={country.id} className={styles[`img${index == 0 ? country.id : (country.id - index*6) }`]}>
-                        <img src={country.image} alt="" />
+                {countries.map((country, i) => (
+                    <div key={country.id} className={styles[`img${i+1}`]}>
+                        <img src={country.image} alt="" className={styles.countryImage}/>
                         <div className={styles.imageShadow}></div>
                         <div className={styles.textDescription}>
                             <p>{country.travelers} Travelers</p>

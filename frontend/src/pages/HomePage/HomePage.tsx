@@ -1,4 +1,3 @@
-import React from 'react'
 import SearchForm from '../../components/SearchForm/SearchForm'
 import CarouselCards from '../../components/CarouselCards/CarouselCards'
 import ImageMosaic from '../../components/ImageMosaic/ImageMosaic'

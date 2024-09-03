@@ -3,7 +3,7 @@ import styles from './LoginPage.module.css'
 import { FaGoogle, FaFacebook, FaArrowLeft } from 'react-icons/fa'
 import { Link, redirect } from 'react-router-dom'
 import {auth} from '../../firebase/firebaseConfig'
-import { signInWithPopup, GoogleAuthProvider, FacebookAuthProvider, getAuth } from "firebase/auth";
+import { signInWithPopup, GoogleAuthProvider, FacebookAuthProvider } from "firebase/auth";
 import { useNavigate } from 'react-router-dom'
 import { useCreateUserWithEmailAndPassword, useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth'
 import { ToastContainer, toast } from 'react-toastify';

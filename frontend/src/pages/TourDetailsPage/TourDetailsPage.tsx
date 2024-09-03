@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useLocation } from 'react-router-dom'
 import PriceCard from '../../components/PriceCard/PriceCard'
 import Map from '../../components/Map/Map'
 import styles from './TourDetails.module.css'
 import { BsCameraVideo } from "react-icons/bs";
-import { CiImageOn, CiLocationOn, CiStar } from "react-icons/ci";
+import { CiImageOn, CiLocationOn } from "react-icons/ci";
 import { IoShareSocialOutline } from "react-icons/io5";
 import { FaRegHeart } from 'react-icons/fa';
 import { FaStar } from "react-icons/fa";
@@ -46,7 +46,6 @@ interface CardsProps {
     minAge?: number, 
     maxPeople?: number, 
     dateStart?: string, 
-    time?: number,
     overview?: string, 
     averageReviews?: number,
     quantReviews?: number
@@ -137,7 +136,7 @@ const TourDetailsPage = () => {
       {data ? (
           <div className={styles.mainDiv}>
           <section className={styles.imageSection}>
-            <img className={styles.image} src="https://picsum.photos/80/80" alt="" />
+            <img className={styles.image} src={data?.image} alt="" />
             <div className={styles.imageButtons}>
               <button><span>Video</span> <BsCameraVideo></BsCameraVideo></button>
               <button><span>Gallery</span> <CiImageOn /></button>
