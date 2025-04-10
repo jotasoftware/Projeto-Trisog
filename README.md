@@ -36,7 +36,7 @@ Para começar a trabalhar no back-end, você precisa inicializar o servidor. Sig
 
 1. **Clone o repositório:**
    ```bash
-   git clone <URL do repositório>
+   git clone https://github.com/jotasoftware/Desafio-Final-Trisog
    ```
 
 2. **Navegue para o diretório do projeto:**
