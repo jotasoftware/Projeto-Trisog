@@ -62,3 +62,11 @@ Para começar a trabalhar no back-end, você precisa inicializar o servidor. Sig
 ## Contato
 
 Para qualquer dúvida ou suporte, entre em contato pelo e-mail [jp.lmoreira25@gmail.com](mailto:jp.lmoreira25@gmail.com).
+
+<img width="1440" alt="Captura de Tela 2025-04-13 às 16 34 59" src="https://github.com/user-attachments/assets/99828aad-09ef-4e7b-987d-0a1c1aaacf11" />
+<img width="1440" alt="Captura de Tela 2025-04-13 às 16 34 43" src="https://github.com/user-attachments/assets/68b88996-e019-4303-88c4-3841d2e20bcf" />
+<img width="1440" alt="Captura de Tela 2025-04-13 às 16 34 28" src="https://github.com/user-attachments/assets/3ec02b8f-1bce-4d9a-9f60-91b2a2b00767" />
+<img width="1440" alt="Captura de Tela 2025-04-13 às 16 36 44" src="https://github.com/user-attachments/assets/da26c8dc-8b5b-4c71-b4ac-8ed61207c2b9" />
+<img width="1440" alt="Captura de Tela 2025-04-13 às 16 33 57" src="https://github.com/user-attachments/assets/0399c9a2-c303-46cf-b4a1-326e6a4d6813" />
+
+
